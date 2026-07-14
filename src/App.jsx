@@ -1,11 +1,17 @@
-
+import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Hero.jsx/Hero";
+import Destinations from "./components/Destinations/Destinations";
 
 function App() {
   return (
     <>
-      <h1 className="text-5xl text-center mt-20 font-bold">
-        GoTravel
-      </h1>
+      <Navbar />
+      <Hero />
+      <Destinations />
+      
+      
+
+
     </>
   );
 }
