@@ -1,0 +1,250 @@
+/* ======================================
+   TESTIMONIALS SECTION
+====================================== */
+
+.testimonials{
+    padding:110px 8%;
+    background:linear-gradient(
+        180deg,
+        #8bd4d4,
+        #f8fcff,
+        #eaf7ff,
+        #a6d8d4
+    );
+}
+
+/* ======================================
+   HEADING
+====================================== */
+
+.testimonial-heading{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.testimonial-heading p{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+}
+
+.testimonial-heading h2{
+
+    margin-top:20px;
+
+    font-size:46px;
+
+    color:#0f172a;
+}
+
+/* ======================================
+   SWIPER
+====================================== */
+
+.swiper{
+
+    padding:20px 10px 70px;
+
+}
+
+/* ======================================
+   CARD
+====================================== */
+
+.testimonial-card{
+
+    background:rgba(255,255,255,.65);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(15,23,42,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 30px 60px rgba(37,99,235,.18);
+
+}
+
+/* ======================================
+   IMAGE
+====================================== */
+
+.testimonial-card img{
+
+    width:100px;
+
+    height:100px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #dbeafe;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.18);
+
+}
+
+/* ======================================
+   NAME
+====================================== */
+
+.testimonial-card h3{
+
+    color:#0f172a;
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+}
+
+.testimonial-card span{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    display:block;
+
+    margin-bottom:18px;
+
+}
+
+/* ======================================
+   STARS
+====================================== */
+
+.stars{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:6px;
+
+    margin-bottom:22px;
+
+    color:#fbbf24;
+
+    font-size:18px;
+
+}
+
+/* ======================================
+   REVIEW
+====================================== */
+
+.testimonial-card p{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+/* ======================================
+   SWIPER PAGINATION
+====================================== */
+
+.swiper-pagination-bullet{
+
+    width:12px;
+
+    height:12px;
+
+    background:#bfdbfe;
+
+    opacity:1;
+
+}
+
+.swiper-pagination-bullet-active{
+
+    width:30px;
+
+    border-radius:30px;
+
+    background:#2563eb;
+
+}
+
+/* ======================================
+   SWIPER BUTTONS
+====================================== */
+
+.swiper-button-next,
+.swiper-button-prev{
+
+    color:#2563eb;
+
+}
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media(max-width:768px){
+
+.testimonials{
+
+padding:80px 6%;
+
+}
+
+.testimonial-heading h2{
+
+font-size:34px;
+
+}
+
+.testimonial-card{
+
+padding:28px;
+
+}
+
+.testimonial-card img{
+
+width:85px;
+
+height:85px;
+
+}
+
+}

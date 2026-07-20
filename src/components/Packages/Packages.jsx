@@ -4,11 +4,13 @@ import packages from "../../data/packages";
 
 import PackageCard from "./PackageCard";
 
+
+
 function Packages(){
 
 return(
 
-<section className="packages">
+<section className="packages" id="packages">
 
 <div className="package-heading">
 

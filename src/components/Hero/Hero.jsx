@@ -27,31 +27,31 @@ function Hero() {
         </p>
 
         <div className="hero-buttons">
-
-          <button className="explore-btn">
-            Explore Now
-          </button>
-
-          <button className="watch-btn">
-            Watch Video
-          </button>
-
+<button
+  className="explore-btn"
+  onClick={() =>
+    document
+      .getElementById("destinations")
+      ?.scrollIntoView({ behavior: "smooth" })
+  }
+>
+  Explore Now
+</button>
+<button
+  className="watch-btn"
+  onClick={() =>
+    window.open(
+      "https://www.youtube.com/watch?v=0V_PF4tHH5M",
+      "_blank"
+    )
+  }
+>
+  Watch Video
+</button>
         </div>
 
-        {/* Glass Search Box */}
-
-        <div className="search-box">
-
-          <input
-            type="text"
-            placeholder="Where do you want to go?"
-          />
-
-          <button>
-            Search
-          </button>
-
-        </div>
+      
+      
 
       </div>
 <div className="scroll-indicator">

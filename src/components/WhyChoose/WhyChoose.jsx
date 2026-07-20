@@ -69,7 +69,14 @@ function WhyChoose() {
 
           </div>
 
-          <button className="why-btn">
+          <button
+  className="whyn-btn"
+  onClick={() =>
+    document
+      .getElementById("about")
+      ?.scrollIntoView({ behavior: "smooth" })
+  }
+>
             Explore More
           </button>
 

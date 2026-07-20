@@ -1,0 +1,801 @@
+/* =====================================================
+   GALLERY PAGE
+===================================================== */
+
+.gallery-page{
+    min-height:100vh;
+    background:linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f7fbff 30%,
+        #ebf8ff 70%,
+        #ffffff 100%
+    );
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.gallery-hero{
+
+    height:45vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        rgba(0,58,120,.55),
+        rgba(0,108,220,.45)
+    ),
+    url("../../assets/images/gallery/gallery-banner.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+.gallery-hero h1{
+
+    font-size:60px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    text-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+.gallery-hero p{
+
+    font-size:18px;
+
+    color:#eef8ff;
+
+}
+
+
+/* =====================================================
+   FILTER BUTTONS
+===================================================== */
+
+.gallery-filter{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:60px auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+}
+
+.gallery-filter button{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    background:rgba(255,255,255,.70);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.40);
+
+    box-shadow:
+    0 12px 30px rgba(37,99,235,.10);
+
+    transition:.35s;
+
+}
+
+.gallery-filter button:hover{
+
+    transform:translateY(-4px);
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.gallery-filter button.active{
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   PINTEREST GRID
+===================================================== */
+
+.gallery-grid{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding-bottom:100px;
+
+    column-count:3;
+
+    column-gap:25px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.gallery-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+    border-radius:24px;
+
+    cursor:pointer;
+
+    break-inside:avoid;
+
+    background:white;
+
+    box-shadow:
+    0 18px 45px rgba(15,23,42,.08);
+
+    transition:.4s;
+
+}
+
+.gallery-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 28px 60px rgba(37,99,235,.20);
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.gallery-card img{
+
+    width:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:.7s;
+
+}
+
+.gallery-card:hover img{
+
+    transform:scale(1.12);
+
+}
+
+
+/* Different Heights */
+
+.gallery-card:nth-child(1) img{
+
+    height:520px;
+
+}
+
+.gallery-card:nth-child(2) img{
+
+    height:320px;
+
+}
+
+.gallery-card:nth-child(3) img{
+
+    height:460px;
+
+}
+
+.gallery-card:nth-child(4) img{
+
+    height:370px;
+
+}
+
+.gallery-card:nth-child(5) img{
+
+    height:520px;
+
+}
+
+.gallery-card:nth-child(6) img{
+
+    height:330px;
+
+}
+
+.gallery-card:nth-child(7) img{
+
+    height:470px;
+
+}
+
+.gallery-card:nth-child(8) img{
+
+    height:360px;
+
+}
+
+
+/* =====================================================
+   CATEGORY BADGE
+===================================================== */
+
+.category-badge{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+    z-index:10;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+
+/* =====================================================
+   LIKE BUTTON
+===================================================== */
+
+.like-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    z-index:10;
+
+    color:#fff;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    transition:.35s;
+
+}
+
+.like-btn:hover{
+
+    background:#ef4444;
+
+    transform:scale(1.1);
+
+}
+
+
+/* =====================================================
+   ZOOM BUTTON
+===================================================== */
+
+.zoom-btn{
+
+    position:absolute;
+
+    top:78px;
+
+    right:20px;
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    z-index:10;
+
+    color:#fff;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    transition:.35s;
+
+}
+
+.zoom-btn:hover{
+
+    background:#2563eb;
+
+    transform:scale(1.1);
+
+}
+
+
+/* =====================================================
+   GLASS OVERLAY
+===================================================== */
+
+.gallery-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    padding:25px;
+
+    opacity:0;
+
+    transition:.45s;
+
+    background:linear-gradient(
+        transparent,
+        rgba(2,6,23,.85)
+    );
+
+}
+
+.gallery-card:hover .gallery-overlay{
+
+    opacity:1;
+
+}
+
+
+/* =====================================================
+   OVERLAY CONTENT
+===================================================== */
+
+.overlay-content{
+
+    width:100%;
+
+    padding:18px 22px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+}
+
+.overlay-content h3{
+
+    color:#fff;
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+.overlay-content p{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#dbeafe;
+
+    font-size:15px;
+
+    margin:0;
+
+}
+
+
+/* =====================================================
+   ICON ANIMATION
+===================================================== */
+
+.like-btn,
+.zoom-btn,
+.category-badge{
+
+    transition:
+        transform .35s,
+        background .35s,
+        box-shadow .35s;
+
+}
+
+.gallery-card:hover .like-btn,
+.gallery-card:hover .zoom-btn,
+.gallery-card:hover .category-badge{
+
+    box-shadow:0 10px 30px rgba(37,99,235,.25);
+
+}
+
+
+
+/* =====================================================
+   LIGHTBOX
+===================================================== */
+
+.lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(2,6,23,.92);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    z-index:9999;
+
+}
+
+.lightbox img{
+
+    width:90%;
+
+    max-width:950px;
+
+    max-height:75vh;
+
+    object-fit:cover;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.45);
+
+}
+
+.lightbox-info{
+
+    margin-top:30px;
+
+    text-align:center;
+
+}
+
+.lightbox-info h2{
+
+    color:#ffffff;
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+.lightbox-info p{
+
+    color:#cbd5e1;
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.close-btn{
+
+    position:absolute;
+
+    top:30px;
+
+    right:35px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    color:white;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:.35s;
+
+}
+
+.close-btn:hover{
+
+    background:#2563eb;
+
+    transform:rotate(90deg);
+
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef8ff;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width:1200px){
+
+.gallery-grid{
+
+    column-count:2;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.gallery-hero{
+
+    height:35vh;
+
+}
+
+.gallery-hero h1{
+
+    font-size:42px;
+
+}
+
+.gallery-hero p{
+
+    font-size:16px;
+
+    padding:0 20px;
+
+}
+
+.gallery-grid{
+
+    column-count:1;
+
+}
+
+.gallery-filter{
+
+    width:95%;
+
+    gap:12px;
+
+}
+
+.gallery-filter button{
+
+    padding:12px 22px;
+
+    font-size:14px;
+
+}
+
+.lightbox img{
+
+    width:95%;
+
+}
+
+.lightbox-info h2{
+
+    font-size:28px;
+
+}
+
+.lightbox-info p{
+
+    font-size:16px;
+
+}
+
+.close-btn{
+
+    top:20px;
+
+    right:20px;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.gallery-hero h1{
+
+    font-size:34px;
+
+}
+
+.gallery-hero p{
+
+    font-size:15px;
+
+}
+
+.category-badge{
+
+    font-size:12px;
+
+    padding:8px 14px;
+
+}
+
+.like-btn,
+.zoom-btn{
+
+    width:42px;
+
+    height:42px;
+
+}
+
+.overlay-content h3{
+
+    font-size:20px;
+
+}
+
+.overlay-content p{
+
+    font-size:14px;
+
+}
+
+}

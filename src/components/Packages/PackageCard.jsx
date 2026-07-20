@@ -1,5 +1,7 @@
 import "./Packages.css";
 
+import { Link } from "react-router-dom";
+
 
 import {
 FaHeart,
@@ -60,10 +62,15 @@ return(
 <div className="bottom">
 
 <h2>{price}</h2>
+<Link to="/booking">
 
-<button>
-Book Now
-</button>
+    <button className="book-btn">
+
+        Book Now
+
+    </button>
+
+</Link>
 
 </div>
 
