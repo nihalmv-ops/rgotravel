@@ -1,4 +1,5 @@
 import "./Destinations.css";
+import { Link } from "react-router-dom";
 
 function DestinationCard({ image, name, country, rating, price }) {
   return (
@@ -21,7 +22,11 @@ function DestinationCard({ image, name, country, rating, price }) {
 
         <h4>{price}</h4>
 
-        <button>Book Now</button>
+       <Link to="/booking">
+  <button className="book-btn">
+    Book Now
+  </button>
+</Link>
 
       </div>
 

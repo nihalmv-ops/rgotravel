@@ -1,0 +1,328 @@
+/* =====================================
+   LOGIN PAGE
+===================================== */
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 8%;
+
+    background:
+    linear-gradient(
+        rgba(0,80,180,.55),
+        rgba(37,99,235,.45)
+    ),
+    url("../../assets/images/hero.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+
+/* =====================================
+   LOGIN CARD
+===================================== */
+
+
+.login-box{
+
+    width:420px;
+
+    padding:45px;
+
+    border-radius:30px;
+
+
+    background:
+    rgba(255,255,255,.18);
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.18);
+
+
+    animation:
+    loginAnimation .8s ease;
+
+}
+
+
+@keyframes loginAnimation{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* =====================================
+   TITLE
+===================================== */
+
+
+.login-box h1{
+
+    text-align:center;
+
+    color:white;
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+
+.login-box p{
+
+    text-align:center;
+
+    color:#e0f2fe;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+
+
+/* =====================================
+   FORM
+===================================== */
+
+
+.login-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+
+    background:
+    rgba(255,255,255,.9);
+
+
+    padding:16px 20px;
+
+
+    border-radius:50px;
+
+
+    transition:.3s;
+
+}
+
+
+
+.input-box svg{
+
+    color:#2563eb;
+
+    font-size:18px;
+
+}
+
+
+.input-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:16px;
+
+}
+
+
+.input-box span{
+
+    cursor:pointer;
+
+    color:#2563eb;
+
+}
+
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+
+.login-form button{
+
+
+    margin-top:10px;
+
+
+    padding:17px;
+
+
+    border:none;
+
+
+    border-radius:50px;
+
+
+    cursor:pointer;
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    font-weight:600;
+
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.35);
+
+
+    transition:.35s;
+
+
+}
+
+
+
+.login-form button:hover{
+
+    transform:translateY(-5px);
+
+
+}
+
+
+
+/* =====================================
+   BOTTOM
+===================================== */
+
+
+.login-bottom{
+
+    margin-top:30px;
+
+    text-align:center;
+
+}
+
+
+.login-bottom p{
+
+    margin:0;
+
+}
+
+
+.login-bottom a{
+
+    color:white;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+
+
+.login-bottom a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+
+@media(max-width:600px){
+
+
+.login-page{
+
+    padding:90px 5%;
+
+}
+
+
+.login-box{
+
+    width:100%;
+
+    padding:30px;
+
+}
+
+
+.login-box h1{
+
+    font-size:32px;
+
+}
+
+
+}

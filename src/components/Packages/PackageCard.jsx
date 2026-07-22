@@ -62,13 +62,23 @@ return(
 <div className="bottom">
 
 <h2>{price}</h2>
-<Link to="/booking">
 
-    <button className="book-btn">
+<Link 
+to="/booking"
+state={{
+    title,
+    location,
+    image,
+    days,
+    people,
+    price,
+    rating
+}}
+>
 
-        Book Now
-
-    </button>
+<button className="book-btn">
+    Book Now
+</button>
 
 </Link>
 

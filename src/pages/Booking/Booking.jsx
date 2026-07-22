@@ -1,88 +1,137 @@
 import "./Booking.css";
+import { useState } from "react";
 
 function Booking() {
 
-    return (
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    destination: "",
+    date: "",
+    travelers: "",
+    message: "",
+  });
 
-        <section className="booking-page">
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-            <div className="booking-container">
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-                <h1>
+    alert(`
+Booking Successful!
 
-                    Book Your Dream Trip
+Name: ${form.name}
+Destination: ${form.destination}
+Travel Date: ${form.date}
+Travelers: ${form.travelers}
+    `);
 
-                </h1>
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      destination: "",
+      date: "",
+      travelers: "",
+      message: "",
+    });
+  };
 
-                <p>
+  return (
+    <section className="booking-page">
 
-                    Complete the form below to reserve your unforgettable journey.
+      <div className="booking-container">
 
-                </p>
+        <h1>Book Your Dream Trip</h1>
 
-                <form className="booking-form">
+        <p>
+          Complete the form below to reserve your unforgettable journey.
+        </p>
 
-                    <input
-                        type="text"
-                        placeholder="Full Name"
-                    />
+        <form className="booking-form" onSubmit={handleSubmit}>
 
-                    <input
-                        type="email"
-                        placeholder="Email Address"
-                    />
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
 
-                    <input
-                        type="tel"
-                        placeholder="Phone Number"
-                    />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
 
-                    <select>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+            required
+          />
 
-                        <option>
-                            Select Destination
-                        </option>
+          <select
+            name="destination"
+            value={form.destination}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Destination</option>
+            <option>Maldives</option>
+            <option>Bali</option>
+            <option>Dubai</option>
+            <option>Paris</option>
+            <option>Switzerland</option>
+          </select>
 
-                        <option>Maldives</option>
+          <input
+            type="date"
+            name="date"
+            value={form.date}
+            onChange={handleChange}
+            required
+          />
 
-                        <option>Bali</option>
+          <input
+            type="number"
+            name="travelers"
+            placeholder="Number of Travelers"
+            value={form.travelers}
+            onChange={handleChange}
+            required
+          />
 
-                        <option>Dubai</option>
+          <textarea
+            rows="5"
+            name="message"
+            placeholder="Special Request..."
+            value={form.message}
+            onChange={handleChange}
+          />
 
-                        <option>Paris</option>
+          <button type="submit">
+            Confirm Booking
+          </button>
 
-                        <option>Switzerland</option>
+        </form>
 
-                    </select>
+      </div>
 
-                    <input
-                        type="date"
-                    />
-
-                    <input
-                        type="number"
-                        placeholder="Number of Travelers"
-                    />
-
-                    <textarea
-                        rows="5"
-                        placeholder="Special Request..."
-                    ></textarea>
-
-                    <button>
-
-                        Confirm Booking
-
-                    </button>
-
-                </form>
-
-            </div>
-
-        </section>
-
-    );
-
+    </section>
+  );
 }
 
 export default Booking;

@@ -1,0 +1,339 @@
+/* =====================================
+   REGISTER PAGE
+===================================== */
+
+.register-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 8%;
+
+    background:
+    linear-gradient(
+        rgba(0,80,180,.55),
+        rgba(37,99,235,.45)
+    ),
+    url("../../assets/images/hero.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+
+
+/* =====================================
+   REGISTER CARD
+===================================== */
+
+
+.register-box{
+
+    width:450px;
+
+    padding:45px;
+
+
+    border-radius:30px;
+
+
+    background:
+    rgba(255,255,255,.18);
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.18);
+
+
+    animation:
+    registerAnimation .8s ease;
+
+}
+
+
+
+@keyframes registerAnimation{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* =====================================
+   TITLE
+===================================== */
+
+
+.register-box h1{
+
+    text-align:center;
+
+    color:white;
+
+    font-size:40px;
+
+    margin-bottom:15px;
+
+}
+
+
+.register-box p{
+
+    text-align:center;
+
+    color:#e0f2fe;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+
+
+/* =====================================
+   FORM
+===================================== */
+
+
+.register-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+
+    background:
+    rgba(255,255,255,.92);
+
+
+    padding:16px 20px;
+
+
+    border-radius:50px;
+
+
+    transition:.3s;
+
+}
+
+
+.input-box:focus-within{
+
+    box-shadow:
+    0 0 0 4px rgba(56,189,248,.35);
+
+}
+
+
+
+.input-box svg{
+
+    color:#2563eb;
+
+    font-size:18px;
+
+}
+
+
+
+.input-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:16px;
+
+}
+
+
+
+.input-box span{
+
+    cursor:pointer;
+
+    color:#2563eb;
+
+}
+
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+
+.register-form button{
+
+
+    margin-top:10px;
+
+
+    padding:17px;
+
+
+    border:none;
+
+
+    border-radius:50px;
+
+
+    cursor:pointer;
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    font-weight:600;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.35);
+
+
+    transition:.35s;
+
+
+}
+
+
+
+.register-form button:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+/* =====================================
+   BOTTOM
+===================================== */
+
+
+.register-bottom{
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+
+.register-bottom p{
+
+    margin:0;
+
+}
+
+
+.register-bottom a{
+
+    color:white;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+
+
+.register-bottom a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+
+@media(max-width:600px){
+
+
+.register-page{
+
+    padding:90px 5%;
+
+}
+
+
+.register-box{
+
+    width:100%;
+
+    padding:30px;
+
+}
+
+
+.register-box h1{
+
+    font-size:32px;
+
+}
+
+
+}
