@@ -13,6 +13,8 @@ from "./components/ProtectedRoute";
 import Login from "./pages/Login/Login";
 
 import Profile from "./pages/Profile/Profile";
+import MyBookings from "./pages/MyBookings/MyBookings";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
   return (
@@ -40,6 +42,12 @@ element={
 
 <Route path="/login" element={<Login />} />
 <Route path="/profile" element={<Profile />} />
+
+<Route path="/my-bookings" element={<MyBookings />} />
+
+<Route path="/settings" element={<Settings />} />
+
+
 
       </Routes>
         <Footer />
