@@ -10,17 +10,24 @@ function Booking() {
 
   const packageData = location.state?.packageData || {};
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    destination: packageData.title || "",
-    date: "",
-    travelers: 1,
-    message: ""
-  });
+ const [form, setForm] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  date: "",
+  travelers: 1,
+  payment: "Card",
+  message: ""
+});
 
-  // Handle Input Change
+
+const price =
+  Number(String(packageData.price || "$0").replace("$", ""));
+
+const totalPrice = price * Number(form.travelers);
+
+  
+
   const handleChange = (e) => {
 
     const { name, value } = e.target;
@@ -32,7 +39,6 @@ function Booking() {
 
   };
 
-  // Submit Booking
   const handleSubmit = (e) => {
 
     e.preventDefault();
@@ -41,22 +47,42 @@ function Booking() {
 
       id: Date.now(),
 
-      ...packageData,
+      image: packageData.image,
 
-      ...form,
+      title: packageData.title,
+
+      location: packageData.location,
+
+      days: packageData.days,
+
+      people: packageData.people,
+
+      price: packageData.price,
+
+      name: form.name,
+
+      email: form.email,
+
+      phone: form.phone,
+
+      date: form.date,
+
+      travelers: form.travelers,
+
+      message: form.message,
 
       status: "Confirmed"
 
     };
 
-    const oldBookings =
+    const bookings =
       JSON.parse(localStorage.getItem("bookings")) || [];
 
-    oldBookings.push(booking);
+    bookings.push(booking);
 
     localStorage.setItem(
       "bookings",
-      JSON.stringify(oldBookings)
+      JSON.stringify(bookings)
     );
 
     alert("Booking Confirmed Successfully!");
@@ -64,6 +90,8 @@ function Booking() {
     navigate("/my-bookings");
 
   };
+
+  
 
   return (
 
@@ -76,6 +104,31 @@ function Booking() {
         <p>
           Complete the form below to reserve your unforgettable journey.
         </p>
+
+        {/* Selected Package */}
+
+        <div className="booking-top">
+
+  <img
+    src={packageData.image}
+    alt={packageData.title}
+  />
+
+  <div className="booking-summary">
+
+    <h2>{packageData.title}</h2>
+
+    <p>📍 {packageData.location}</p>
+
+    <p>🗓 {packageData.days}</p>
+
+    <h3>{packageData.price}</h3>
+
+  </div>
+
+</div>
+
+
 
         <form
           className="booking-form"
@@ -109,23 +162,6 @@ function Booking() {
             required
           />
 
-          <select
-            name="destination"
-            value={form.destination}
-            onChange={handleChange}
-            required
-          >
-
-            <option value="">Select Destination</option>
-
-            <option>Bali</option>
-            <option>Dubai</option>
-            <option>Maldives</option>
-            <option>Paris</option>
-            <option>Switzerland</option>
-
-          </select>
-
           <input
             type="date"
             name="date"
@@ -137,6 +173,7 @@ function Booking() {
           <input
             type="number"
             name="travelers"
+            min="1"
             placeholder="Number of Travelers"
             value={form.travelers}
             onChange={handleChange}
@@ -149,7 +186,65 @@ function Booking() {
             placeholder="Special Request..."
             value={form.message}
             onChange={handleChange}
-          ></textarea>
+          />
+
+          <div className="payment-box">
+
+  <h3>Select Payment</h3>
+
+  <label>
+
+    <input
+      type="radio"
+      name="payment"
+      value="Card"
+      checked={form.payment === "Card"}
+      onChange={handleChange}
+    />
+
+    Credit Card
+
+  </label>
+
+  <label>
+
+    <input
+      type="radio"
+      name="payment"
+      value="UPI"
+      checked={form.payment === "UPI"}
+      onChange={handleChange}
+    />
+
+    UPI
+
+  </label>
+
+  <label>
+
+    <input
+      type="radio"
+      name="payment"
+      value="PayPal"
+      checked={form.payment === "PayPal"}
+      onChange={handleChange}
+    />
+
+    PayPal
+
+  </label>
+
+</div>
+
+<div className="total-price">
+
+  <h2>
+
+    Total: ${totalPrice}
+
+  </h2>
+
+</div>
 
           <button type="submit">
 
