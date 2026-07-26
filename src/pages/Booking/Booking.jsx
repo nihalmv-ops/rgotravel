@@ -1,49 +1,72 @@
 import "./Booking.css";
+
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Booking() {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const packageData = location.state?.packageData || {};
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
-    destination: "",
+    destination: packageData.title || "",
     date: "",
-    travelers: "",
-    message: "",
+    travelers: 1,
+    message: ""
   });
 
+  // Handle Input Change
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+
   };
 
+  // Submit Booking
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
-    alert(`
-Booking Successful!
+    const booking = {
 
-Name: ${form.name}
-Destination: ${form.destination}
-Travel Date: ${form.date}
-Travelers: ${form.travelers}
-    `);
+      id: Date.now(),
 
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      destination: "",
-      date: "",
-      travelers: "",
-      message: "",
-    });
+      ...packageData,
+
+      ...form,
+
+      status: "Confirmed"
+
+    };
+
+    const oldBookings =
+      JSON.parse(localStorage.getItem("bookings")) || [];
+
+    oldBookings.push(booking);
+
+    localStorage.setItem(
+      "bookings",
+      JSON.stringify(oldBookings)
+    );
+
+    alert("Booking Confirmed Successfully!");
+
+    navigate("/my-bookings");
+
   };
 
   return (
+
     <section className="booking-page">
 
       <div className="booking-container">
@@ -54,7 +77,10 @@ Travelers: ${form.travelers}
           Complete the form below to reserve your unforgettable journey.
         </p>
 
-        <form className="booking-form" onSubmit={handleSubmit}>
+        <form
+          className="booking-form"
+          onSubmit={handleSubmit}
+        >
 
           <input
             type="text"
@@ -89,12 +115,15 @@ Travelers: ${form.travelers}
             onChange={handleChange}
             required
           >
+
             <option value="">Select Destination</option>
-            <option>Maldives</option>
+
             <option>Bali</option>
             <option>Dubai</option>
+            <option>Maldives</option>
             <option>Paris</option>
             <option>Switzerland</option>
+
           </select>
 
           <input
@@ -120,10 +149,12 @@ Travelers: ${form.travelers}
             placeholder="Special Request..."
             value={form.message}
             onChange={handleChange}
-          />
+          ></textarea>
 
           <button type="submit">
+
             Confirm Booking
+
           </button>
 
         </form>
@@ -131,7 +162,9 @@ Travelers: ${form.travelers}
       </div>
 
     </section>
+
   );
+
 }
 
 export default Booking;

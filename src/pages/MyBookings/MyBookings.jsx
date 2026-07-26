@@ -10,40 +10,10 @@ import {
 
 function MyBookings() {
 
-  const bookings = [
-
-    {
-      id: 1,
-      image: "/src/assets/images/bali.jpg",
-      title: "Bali Adventure",
-      date: "25 Aug 2026",
-      people: "2 Travelers",
-      price: "$799",
-      status: "Confirmed"
-    },
-
-    {
-      id: 2,
-      image: "/src/assets/images/switzerland.jpg",
-      title: "Swiss Alps",
-      date: "10 Sep 2026",
-      people: "4 Travelers",
-      price: "$1499",
-      status: "Pending"
-    },
-
-    {
-      id: 3,
-      image: "/src/assets/images/maldives.jpg",
-      title: "Maldives Beach",
-      date: "20 Oct 2026",
-      people: "2 Travelers",
-      price: "$999",
-      status: "Confirmed"
-    }
-
-  ];
-
+  const bookings =
+JSON.parse(
+localStorage.getItem("bookings")
+) || [];
   return (
 
     <section className="bookings-page">

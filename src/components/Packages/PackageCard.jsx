@@ -2,93 +2,99 @@ import "./Packages.css";
 
 import { Link } from "react-router-dom";
 
-
 import {
-FaHeart,
-FaClock,
-FaUsers,
-FaMapMarkerAlt,
-FaStar
+  FaHeart,
+  FaClock,
+  FaUsers,
+  FaMapMarkerAlt,
+  FaStar
 } from "react-icons/fa";
 
-function PackageCard({image,title,location,days,people,price,rating}){
+function PackageCard({
+  image,
+  title,
+  location,
+  days,
+  people,
+  price,
+  rating
+}) {
 
-return(
+  return (
 
-<div className="package-card">
+    <div className="package-card">
 
-<div className="package-image">
+      <div className="package-image">
 
-<img src={image} alt={title}/>
+        <img src={image} alt={title} />
 
-<div className="wishlist">
-<FaHeart/>
-</div>
+        <div className="wishlist">
+          <FaHeart />
+        </div>
 
-</div>
+      </div>
 
-<div className="package-content">
+      <div className="package-content">
 
-<div className="top-row">
+        <div className="top-row">
 
-<span>
-<FaStar/>
-{rating}
-</span>
+          <span>
+            <FaStar />
+            {rating}
+          </span>
 
-<span>
-<FaMapMarkerAlt/>
-{location}
-</span>
+          <span>
+            <FaMapMarkerAlt />
+            {location}
+          </span>
 
-</div>
+        </div>
 
-<h3>{title}</h3>
+        <h3>{title}</h3>
 
-<div className="info">
+        <div className="info">
 
-<span>
-<FaClock/>
-{days}
-</span>
+          <span>
+            <FaClock />
+            {days}
+          </span>
 
-<span>
-<FaUsers/>
-{people}
-</span>
+          <span>
+            <FaUsers />
+            {people}
+          </span>
 
-</div>
+        </div>
 
-<div className="bottom">
+        <div className="bottom">
 
-<h2>{price}</h2>
+          <h2>{price}</h2>
 
-<Link 
-to="/booking"
-state={{
-    title,
-    location,
-    image,
-    days,
-    people,
-    price,
-    rating
-}}
->
+          <Link
+            to="/booking"
+            state={{
+              packageData: {
+                image,
+                title,
+                location,
+                days,
+                people,
+                price
+              }
+            }}
+          >
+            <button className="book-btn">
+              Book Now
+            </button>
+          </Link>
 
-<button className="book-btn">
-    Book Now
-</button>
+        </div>
 
-</Link>
+      </div>
 
-</div>
+    </div>
 
-</div>
-
-</div>
-
-);
+  );
 
 }
 
