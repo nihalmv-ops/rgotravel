@@ -1,50 +1,144 @@
 import "./Navbar.css";
-import { FaBars, FaTimes } from "react-icons/fa";
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+import {
+  FaBars,
+  FaTimes,
+  FaUserCircle,
+  FaChevronDown,
+  FaSignOutAlt,
+  FaCog,
+  FaSuitcase,
+  FaUser
+} from "react-icons/fa";
+
+import { useAuth } from "../../context/AuthContext";
+
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+
+  const { user, logout } = useAuth();
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const handleLogout = () => {
+    logout();
+    setShowProfile(false);
+    closeMenu();
+  };
 
   return (
     <header className="navbar">
-
       <div className="container">
 
         {/* Logo */}
-        <div className="logo">
+        <Link
+          to="/"
+          className="logo"
+          onClick={closeMenu}
+        >
           GoTravel
-        </div>
+        </Link>
 
-        {/* Desktop Menu */}
-     <nav className={menuOpen ? "nav-menu active" : "nav-menu"}>
+        {/* Navigation */}
+        <nav className={menuOpen ? "nav-menu active" : "nav-menu"}>
 
-  <Link to="/" onClick={() => setMenuOpen(false)}>
-    Home
-  </Link>
+          <NavLink to="/" onClick={closeMenu}>
+            Home
+          </NavLink>
 
-  <a href="/#destinations" onClick={() => setMenuOpen(false)}>
-    Destinations
-  </a>
+          <a href="/#destinations" onClick={closeMenu}>
+            Destinations
+          </a>
 
-  <a href="/#packages" onClick={() => setMenuOpen(false)}>
-    Packages
-  </a>
+          <a href="/#packages" onClick={closeMenu}>
+            Packages
+          </a>
 
-  <a href="/#about" onClick={() => setMenuOpen(false)}>
-    About
-  </a>
+          <a href="/#about" onClick={closeMenu}>
+            About
+          </a>
 
-  <Link to="/gallery" onClick={() => setMenuOpen(false)}>
-    Gallery
-  </Link>
+          <NavLink to="/gallery" onClick={closeMenu}>
+            Gallery
+          </NavLink>
 
-  <Link to="/contact" onClick={() => setMenuOpen(false)}>
-    Contact
-  </Link>
+          <NavLink to="/contact" onClick={closeMenu}>
+            Contact
+          </NavLink>
 
-</nav>
+          {user ? (
 
-        {/* Mobile Icon */}
+            <div className="profile-menu">
+
+              <button
+                className="profile-btn"
+                onClick={() => setShowProfile(!showProfile)}
+              >
+                <FaUserCircle className="avatar" />
+
+                <span>Nihal</span>
+
+                <FaChevronDown />
+              </button>
+
+              {showProfile && (
+
+                <div className="dropdown">
+
+                  <Link
+                    to="/profile"
+                    onClick={closeMenu}
+                  >
+                    <FaUser />
+                    Profile
+                  </Link>
+
+                  <Link
+                    to="/my-bookings"
+                    onClick={closeMenu}
+                  >
+                    <FaSuitcase />
+                    My Bookings
+                  </Link>
+
+                  <Link
+                    to="/settings"
+                    onClick={closeMenu}
+                  >
+                    <FaCog />
+                    Settings
+                  </Link>
+
+                  <button onClick={handleLogout}>
+                    <FaSignOutAlt />
+                    Logout
+                  </button>
+
+                </div>
+
+              )}
+
+            </div>
+
+          ) : (
+
+            <Link
+              to="/login"
+              className="login-btn"
+              onClick={closeMenu}
+            >
+              Login
+            </Link>
+
+          )}
+
+        </nav>
+
+        {/* Mobile Menu Icon */}
         <div
           className="menu-icon"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -53,7 +147,6 @@ function Navbar() {
         </div>
 
       </div>
-
     </header>
   );
 }

@@ -8,6 +8,9 @@ import Contact from "./pages/Contact/Contact";
 import NotFound from "./pages/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import Booking from "./pages/Booking/Booking";
+import ProtectedRoute 
+from "./components/ProtectedRoute";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -21,9 +24,19 @@ function App() {
 <Route path="/contact" element={<Contact />} />
 <Route path="*" element={<NotFound />} />
 <Route
-  path="/booking"
-  element={<Booking />}
+path="/booking"
+element={
+
+<ProtectedRoute>
+
+<Booking />
+
+</ProtectedRoute>
+
+}
 />
+
+<Route path="/login" element={<Login />} />
 
       </Routes>
         <Footer />
