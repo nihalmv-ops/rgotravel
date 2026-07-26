@@ -30,3 +30,65 @@ img{
     max-width:1200px;
     margin:auto;
 }
+
+
+/* ======================
+   LIGHT MODE
+====================== */
+
+body{
+
+    background:#ffffff;
+
+    color:#111827;
+
+    transition:.35s;
+
+}
+
+/* ======================
+   DARK MODE
+====================== */
+
+body.dark-theme{
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+}
+
+/* Navbar */
+
+body.dark-theme .navbar{
+
+    background:rgba(15,23,42,.85);
+
+}
+
+/* Cards */
+
+body.dark-theme .package-card,
+body.dark-theme .destination-card,
+body.dark-theme .profile-card,
+body.dark-theme .settings-card{
+
+    background:rgba(30,41,59,.75);
+
+    color:white;
+
+}
+
+/* Inputs */
+
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select{
+
+    background:#1e293b;
+
+    color:white;
+
+    border:1px solid #334155;
+
+}
