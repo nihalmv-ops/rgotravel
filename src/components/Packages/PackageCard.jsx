@@ -2,6 +2,8 @@ import "./Packages.css";
 
 import { Link } from "react-router-dom";
 
+import destinations from "../../data/destinations";
+
 import {
   FaHeart,
   FaClock,

@@ -4,6 +4,8 @@ import packages from "../../data/packages";
 
 import PackageCard from "./PackageCard";
 
+import destinations from "../../data/destinations";
+
 
 
 function Packages(){

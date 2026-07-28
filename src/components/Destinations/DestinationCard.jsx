@@ -22,7 +22,17 @@ function DestinationCard({ image, name, country, rating, price }) {
 
         <h4>{price}</h4>
 
-       <Link to="/booking">
+       <Link
+        to="/booking"
+        state={{
+          packageData: {
+            image,
+            title: name,
+            location: country,
+            price
+          }
+        }}
+       >
   <button className="book-btn">
     Book Now
   </button>

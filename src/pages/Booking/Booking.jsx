@@ -8,25 +8,34 @@ function Booking() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const packageData = location.state?.packageData || {};
+  // If we came here from "Edit Booking" on My Bookings, this will be set
+  const editBooking = location.state?.editBooking || null;
 
- const [form, setForm] = useState({
-  name: "",
-  email: "",
-  phone: "",
-  date: "",
-  travelers: 1,
-  payment: "Card",
-  message: ""
-});
+  const isEditing = Boolean(editBooking);
 
+  const packageData = isEditing
+    ? {
+        image: editBooking.image,
+        title: editBooking.title,
+        location: editBooking.location,
+        price: editBooking.price
+      }
+    : location.state?.packageData || {};
 
-const price =
-  Number(String(packageData.price || "$0").replace("$", ""));
+  const [form, setForm] = useState({
+    name: editBooking?.name || "",
+    email: editBooking?.email || "",
+    phone: editBooking?.phone || "",
+    date: editBooking?.date || "",
+    travelers: editBooking?.travelers || 1,
+    payment: editBooking?.payment || "Card",
+    message: editBooking?.message || ""
+  });
 
-const totalPrice = price * Number(form.travelers);
+  const price =
+    Number(String(packageData.price || "$0").replace("$", ""));
 
-  
+  const totalPrice = price * Number(form.travelers);
 
   const handleChange = (e) => {
 
@@ -43,55 +52,48 @@ const totalPrice = price * Number(form.travelers);
 
     e.preventDefault();
 
-    const booking = {
+    if (isEditing) {
 
-      id: Date.now(),
+      // Update the existing booking in place, no payment step needed
 
-      image: packageData.image,
+      const bookings =
+        JSON.parse(localStorage.getItem("bookings")) || [];
 
-      title: packageData.title,
+      const updated = bookings.map((b) =>
+        b.id === editBooking.id
+          ? {
+              ...b,
+              name: form.name,
+              email: form.email,
+              phone: form.phone,
+              date: form.date,
+              travelers: form.travelers,
+              payment: form.payment,
+              message: form.message,
+              price: `$${totalPrice}`
+            }
+          : b
+      );
 
-      location: packageData.location,
+      localStorage.setItem("bookings", JSON.stringify(updated));
 
-      days: packageData.days,
+      navigate("/my-bookings");
 
-      people: packageData.people,
+      return;
 
-      price: packageData.price,
+    }
 
-      name: form.name,
+    // New booking: go to payment confirmation before saving anything
 
-      email: form.email,
-
-      phone: form.phone,
-
-      date: form.date,
-
-      travelers: form.travelers,
-
-      message: form.message,
-
-      status: "Confirmed"
-
-    };
-
-    const bookings =
-      JSON.parse(localStorage.getItem("bookings")) || [];
-
-    bookings.push(booking);
-
-    localStorage.setItem(
-      "bookings",
-      JSON.stringify(bookings)
-    );
-
-    alert("Booking Confirmed Successfully!");
-
-    navigate("/my-bookings");
+    navigate("/payment-confirmation", {
+      state: {
+        packageData,
+        form,
+        totalPrice
+      }
+    });
 
   };
-
-  
 
   return (
 
@@ -99,36 +101,38 @@ const totalPrice = price * Number(form.travelers);
 
       <div className="booking-container">
 
-        <h1>Book Your Dream Trip</h1>
+        <h1>
+          {isEditing ? "Edit Your Booking" : "Book Your Dream Trip"}
+        </h1>
 
         <p>
-          Complete the form below to reserve your unforgettable journey.
+          {isEditing
+            ? "Update your travel details below."
+            : "Complete the form below to reserve your unforgettable journey."}
         </p>
 
         {/* Selected Package */}
 
         <div className="booking-top">
 
-  <img
-    src={packageData.image}
-    alt={packageData.title}
-  />
+          <img
+            src={packageData.image}
+            alt={packageData.title}
+          />
 
-  <div className="booking-summary">
+          <div className="booking-summary">
 
-    <h2>{packageData.title}</h2>
+            <h2>{packageData.title}</h2>
 
-    <p>📍 {packageData.location}</p>
+            <p>📍 {packageData.location}</p>
 
-    <p>🗓 {packageData.days}</p>
+            <p>🗓 {packageData.days}</p>
 
-    <h3>{packageData.price}</h3>
+            <h3>{packageData.price}</h3>
 
-  </div>
+          </div>
 
-</div>
-
-
+        </div>
 
         <form
           className="booking-form"
@@ -190,65 +194,65 @@ const totalPrice = price * Number(form.travelers);
 
           <div className="payment-box">
 
-  <h3>Select Payment</h3>
+            <h3>Select Payment</h3>
 
-  <label>
+            <label>
 
-    <input
-      type="radio"
-      name="payment"
-      value="Card"
-      checked={form.payment === "Card"}
-      onChange={handleChange}
-    />
+              <input
+                type="radio"
+                name="payment"
+                value="Card"
+                checked={form.payment === "Card"}
+                onChange={handleChange}
+              />
 
-    Credit Card
+              Credit Card
 
-  </label>
+            </label>
 
-  <label>
+            <label>
 
-    <input
-      type="radio"
-      name="payment"
-      value="UPI"
-      checked={form.payment === "UPI"}
-      onChange={handleChange}
-    />
+              <input
+                type="radio"
+                name="payment"
+                value="UPI"
+                checked={form.payment === "UPI"}
+                onChange={handleChange}
+              />
 
-    UPI
+              UPI
 
-  </label>
+            </label>
 
-  <label>
+            <label>
 
-    <input
-      type="radio"
-      name="payment"
-      value="PayPal"
-      checked={form.payment === "PayPal"}
-      onChange={handleChange}
-    />
+              <input
+                type="radio"
+                name="payment"
+                value="PayPal"
+                checked={form.payment === "PayPal"}
+                onChange={handleChange}
+              />
 
-    PayPal
+              PayPal
 
-  </label>
+            </label>
 
-</div>
+          </div>
 
-<div className="total-price">
+          <div className="total-price">
 
-  <h2>
+            <h2>
 
-    Total: ${totalPrice}
+              Total: ${totalPrice}
 
-  </h2>
+            </h2>
 
-</div>
+          </div>
 
           <button type="submit">
 
-            Confirm Booking
+            {isEditing ? "Save Changes" : "Continue to Payment"}
 
           </button>
 

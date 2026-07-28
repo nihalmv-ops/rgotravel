@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import MyBookings from "./pages/MyBookings/MyBookings";
 import Settings from "./pages/Settings/Settings";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ element={
 <Route path="/my-bookings" element={<MyBookings />} />
 
 <Route path="/settings" element={<Settings />} />
+
+<Route path="/edit-profile" element={<EditProfile />} />
 
 
 
