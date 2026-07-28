@@ -16,6 +16,8 @@ import Profile from "./pages/Profile/Profile";
 import MyBookings from "./pages/MyBookings/MyBookings";
 import Settings from "./pages/Settings/Settings";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import PaymentConfirmation from "./pages/PaymentConfirmation/PaymentConfirmation";
+import BookingSuccess from "./pages/BookingSuccess/BookingSuccess";
 
 function App() {
   return (
@@ -49,6 +51,32 @@ element={
 <Route path="/settings" element={<Settings />} />
 
 <Route path="/edit-profile" element={<EditProfile />} />
+
+<Route
+path="/payment-confirmation"
+element={
+
+<ProtectedRoute>
+
+<PaymentConfirmation />
+
+</ProtectedRoute>
+
+}
+/>
+
+<Route
+path="/booking-success"
+element={
+
+<ProtectedRoute>
+
+<BookingSuccess />
+
+</ProtectedRoute>
+
+}
+/>
 
 
 
