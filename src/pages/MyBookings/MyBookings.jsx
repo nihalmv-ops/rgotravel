@@ -1,19 +1,93 @@
 import "./MyBookings.css";
 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaMapMarkerAlt,
   FaCalendarAlt,
   FaUsers,
   FaCheckCircle,
-  FaClock
+  FaClock,
+  FaTimesCircle,
+  FaEdit,
+  FaBan,
+  FaDownload
 } from "react-icons/fa";
+
+import { generateReceipt } from "../../utils/generateReceipt";
 
 function MyBookings() {
 
-  const bookings =
-JSON.parse(
-localStorage.getItem("bookings")
-) || [];
+  const navigate = useNavigate();
+
+  const [bookings, setBookings] = useState(
+    () => JSON.parse(localStorage.getItem("bookings")) || []
+  );
+
+  const updateBookings = (next) => {
+
+    setBookings(next);
+
+    localStorage.setItem("bookings", JSON.stringify(next));
+
+  };
+
+  const handleCancel = (id) => {
+
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this booking?"
+    );
+
+    if (!confirmed) return;
+
+    const next = bookings.map((b) =>
+      b.id === id ? { ...b, status: "Cancelled" } : b
+    );
+
+    updateBookings(next);
+
+  };
+
+  const handleEdit = (booking) => {
+
+    navigate("/booking", { state: { editBooking: booking } });
+
+  };
+
+  const renderStatus = (status) => {
+
+    if (status === "Cancelled") {
+
+      return (
+        <span className="cancelled">
+          <FaTimesCircle />
+          Cancelled
+        </span>
+      );
+
+    }
+
+    if (status === "Confirmed") {
+
+      return (
+        <span className="confirmed">
+          <FaCheckCircle />
+          Confirmed
+        </span>
+      );
+
+    }
+
+    return (
+      <span className="pending">
+        <FaClock />
+        Pending
+      </span>
+    );
+
+  };
+
   return (
 
     <section className="bookings-page">
@@ -25,6 +99,14 @@ localStorage.getItem("bookings")
         <p>
           View all your upcoming travel bookings.
         </p>
+
+        {bookings.length === 0 && (
+
+          <p className="no-bookings">
+            You have no bookings yet. Go book your next adventure!
+          </p>
+
+        )}
 
         <div className="bookings-grid">
 
@@ -48,7 +130,7 @@ localStorage.getItem("bookings")
 
                   <FaMapMarkerAlt />
 
-                  {trip.title}
+                  {trip.location || trip.title}
 
                 </p>
 
@@ -64,7 +146,7 @@ localStorage.getItem("bookings")
 
                   <FaUsers />
 
-                  {trip.people}
+                  {trip.travelers || trip.people}
 
                 </p>
 
@@ -72,25 +154,41 @@ localStorage.getItem("bookings")
 
                   <h3>{trip.price}</h3>
 
-                  {trip.status === "Confirmed" ? (
+                  {renderStatus(trip.status)}
 
-                    <span className="confirmed">
+                </div>
 
-                      <FaCheckCircle />
+                <div className="booking-actions">
 
-                      Confirmed
+                  <button
+                    className="action-btn"
+                    onClick={() => generateReceipt(trip)}
+                  >
+                    <FaDownload />
+                    Receipt
+                  </button>
 
-                    </span>
+                  {trip.status !== "Cancelled" && (
 
-                  ) : (
+                    <>
 
-                    <span className="pending">
+                      <button
+                        className="action-btn"
+                        onClick={() => handleEdit(trip)}
+                      >
+                        <FaEdit />
+                        Edit
+                      </button>
 
-                      <FaClock />
+                      <button
+                        className="action-btn danger"
+                        onClick={() => handleCancel(trip.id)}
+                      >
+                        <FaBan />
+                        Cancel
+                      </button>
 
-                      Pending
-
-                    </span>
+                    </>
 
                   )}
 
