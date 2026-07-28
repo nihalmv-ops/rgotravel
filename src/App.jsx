@@ -11,6 +11,7 @@ import Booking from "./pages/Booking/Booking";
 import ProtectedRoute 
 from "./components/ProtectedRoute";
 import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 import Profile from "./pages/Profile/Profile";
 import MyBookings from "./pages/MyBookings/MyBookings";
@@ -18,6 +19,8 @@ import Settings from "./pages/Settings/Settings";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import PaymentConfirmation from "./pages/PaymentConfirmation/PaymentConfirmation";
 import BookingSuccess from "./pages/BookingSuccess/BookingSuccess";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
 
 function App() {
   return (
@@ -44,6 +47,7 @@ element={
 />
 
 <Route path="/login" element={<Login />} />
+<Route path="/register" element={<Register />} />
 <Route path="/profile" element={<Profile />} />
 
 <Route path="/my-bookings" element={<MyBookings />} />
@@ -77,6 +81,10 @@ element={
 
 }
 />
+
+<Route path="/wishlist" element={<Wishlist />} />
+
+<Route path="/change-password" element={<ChangePassword />} />
 
 
 

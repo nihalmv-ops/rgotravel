@@ -1,8 +1,7 @@
 import "./Packages.css";
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
-
-import destinations from "../../data/destinations";
 
 import {
   FaHeart,
@@ -13,6 +12,7 @@ import {
 } from "react-icons/fa";
 
 function PackageCard({
+  id,
   image,
   title,
   location,
@@ -22,6 +22,28 @@ function PackageCard({
   rating
 }) {
 
+  const [isSaved, setIsSaved] = useState(() => {
+
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    return wishlist.includes(id);
+
+  });
+
+  const toggleWishlist = () => {
+
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    const next = isSaved
+      ? wishlist.filter((itemId) => itemId !== id)
+      : [...wishlist, id];
+
+    localStorage.setItem("wishlist", JSON.stringify(next));
+
+    setIsSaved(!isSaved);
+
+  };
+
   return (
 
     <div className="package-card">
@@ -30,7 +52,10 @@ function PackageCard({
 
         <img src={image} alt={title} />
 
-        <div className="wishlist">
+        <div
+          className={`wishlist ${isSaved ? "active" : ""}`}
+          onClick={toggleWishlist}
+        >
           <FaHeart />
         </div>
 

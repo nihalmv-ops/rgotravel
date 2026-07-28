@@ -20,6 +20,8 @@ function Profile() {
 
   const { logout } = useAuth();
 
+  const photo = localStorage.getItem("profilePicture");
+
   return (
 
     <section className="profile-page">
@@ -28,7 +30,19 @@ function Profile() {
 
         <div className="profile-top">
 
-          <FaUserCircle className="profile-avatar" />
+          {photo ? (
+
+            <img
+              src={photo}
+              alt="Profile"
+              className="profile-avatar-img"
+            />
+
+          ) : (
+
+            <FaUserCircle className="profile-avatar" />
+
+          )}
 
           <h2>Nihal MV</h2>
 

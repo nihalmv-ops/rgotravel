@@ -155,6 +155,20 @@
 
 }
 
+.wishlist.active{
+
+    background:#dc2626;
+
+    color:#fff;
+
+}
+
+.wishlist.active:hover{
+
+    background:#b91c1c;
+
+}
+
 /* ===================================
    CONTENT
 =================================== */

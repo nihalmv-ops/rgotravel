@@ -12,7 +12,8 @@ import {
   FaTimesCircle,
   FaEdit,
   FaBan,
-  FaDownload
+  FaDownload,
+  FaTrash
 } from "react-icons/fa";
 
 import { generateReceipt } from "../../utils/generateReceipt";
@@ -44,6 +45,20 @@ function MyBookings() {
     const next = bookings.map((b) =>
       b.id === id ? { ...b, status: "Cancelled" } : b
     );
+
+    updateBookings(next);
+
+  };
+
+  const handleRemove = (id) => {
+
+    const confirmed = window.confirm(
+      "Remove this booking permanently? This can't be undone."
+    );
+
+    if (!confirmed) return;
+
+    const next = bookings.filter((b) => b.id !== id);
 
     updateBookings(next);
 
@@ -191,6 +206,14 @@ function MyBookings() {
                     </>
 
                   )}
+
+                  <button
+                    className="action-btn danger"
+                    onClick={() => handleRemove(trip.id)}
+                  >
+                    <FaTrash />
+                    Remove
+                  </button>
 
                 </div>
 

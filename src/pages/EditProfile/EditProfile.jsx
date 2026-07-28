@@ -1,13 +1,15 @@
 import "./EditProfile.css";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import {
   FaUser,
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
-  FaSave
+  FaSave,
+  FaCamera,
+  FaUserCircle
 } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
@@ -15,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 function EditProfile() {
 
   const navigate = useNavigate();
+
+  const fileInputRef = useRef(null);
 
   const [name, setName] = useState("Nihal MV");
 
@@ -24,11 +28,65 @@ function EditProfile() {
 
   const [location, setLocation] = useState("Kerala, India");
 
+  const [photo, setPhoto] = useState(
+    () => localStorage.getItem("profilePicture") || ""
+  );
+
+  const handlePhotoClick = () => {
+
+    fileInputRef.current.click();
+
+  };
+
+  const handlePhotoChange = (e) => {
+
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+
+      alert("Please select an image file.");
+
+      return;
+
+    }
+
+    if (file.size > 3 * 1024 * 1024) {
+
+      alert("Please choose an image smaller than 3MB.");
+
+      return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+
+      setPhoto(reader.result);
+
+    };
+
+    reader.readAsDataURL(file);
+
+  };
+
   const handleSubmit = (e) => {
 
     e.preventDefault();
 
     // Save profile changes here (API call / context update)
+
+    if (photo) {
+
+      localStorage.setItem("profilePicture", photo);
+
+    } else {
+
+      localStorage.removeItem("profilePicture");
+
+    }
 
     navigate("/profile");
 
@@ -43,6 +101,40 @@ function EditProfile() {
         <h1>
           Edit Profile
         </h1>
+
+        <div className="avatar-upload">
+
+          <div className="avatar-circle" onClick={handlePhotoClick}>
+
+            {photo ? (
+
+              <img src={photo} alt="Profile" />
+
+            ) : (
+
+              <FaUserCircle className="avatar-placeholder" />
+
+            )}
+
+            <div className="avatar-overlay">
+              <FaCamera />
+            </div>
+
+          </div>
+
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handlePhotoChange}
+            hidden
+          />
+
+          <span onClick={handlePhotoClick}>
+            Upload Profile Picture
+          </span>
+
+        </div>
 
         <form onSubmit={handleSubmit}>
 
