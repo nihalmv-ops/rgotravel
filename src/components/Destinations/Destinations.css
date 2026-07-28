@@ -295,44 +295,163 @@
 }
 
 /* ===============================
+   PREMIUM FILTER TOOLBAR
+================================== */
+
+.destination-toolbar{
+
+    max-width:920px;
+
+    margin:0 auto 50px;
+
+    display:grid;
+
+    grid-template-columns:2.3fr 1fr 1fr 1fr;
+
+    gap:16px;
+
+    align-items:center;
+
+}
+
+/* Search Box */
+
+.search-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    height:52px;
+
+    padding:0 18px;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.5);
+
+    border-radius:50px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.search-box:hover,
+.search-box:focus-within{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.15);
+
+}
+
+.search-box svg{
+
+    font-size:18px;
+
+    color:#2563eb;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+    color:#0f172a;
+
+}
+
+.search-box input::placeholder{
+
+    color:#64748b;
+
+}
+
+/* Dropdown */
+
+.destination-toolbar select{
+
+    width:100%;
+
+    height:52px;
+
+    padding:0 18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.5);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#0f172a;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.destination-toolbar select:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.15);
+
+}
+
+.destination-toolbar select:focus{
+
+    border-color:#2563eb;
+
+}
+
+/* ===============================
    MOBILE
 ================================== */
 
 @media(max-width:768px){
 
-.section-title h2{
+.destination-toolbar{
 
-    font-size:32px;
-
-}
-
-.destination-card{
-
-    height:400px;
-
-}
-
-.card-content{
-
-    flex-direction:column;
-
-    align-items:flex-start;
-
-    gap:12px;
-
-}
-
-.card-footer{
-
-    flex-direction:column;
-
-    align-items:flex-start;
+    grid-template-columns:1fr;
 
     gap:15px;
 
 }
 
-.card-footer button{
+.search-box{
+
+    width:100%;
+
+}
+
+.destination-toolbar select{
 
     width:100%;
 

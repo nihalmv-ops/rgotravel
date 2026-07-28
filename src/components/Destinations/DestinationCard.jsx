@@ -1,11 +1,45 @@
 import "./Destinations.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
-function DestinationCard({ image, name, country, rating, price }) {
+function DestinationCard({ id, image, name, country, rating, price }) {
+
+  const [isFavorite, setIsFavorite] = useState(() => {
+
+    const favorites =
+      JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
+
+    return favorites.includes(id);
+
+  });
+
+  const toggleFavorite = () => {
+
+    const favorites =
+      JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
+
+    const next = isFavorite
+      ? favorites.filter((itemId) => itemId !== id)
+      : [...favorites, id];
+
+    localStorage.setItem("favoriteDestinations", JSON.stringify(next));
+
+    setIsFavorite(!isFavorite);
+
+  };
+
   return (
     <div className="destination-card">
 
       <img src={image} alt={name} />
+
+      <div
+        className={`destination-favorite ${isFavorite ? "active" : ""}`}
+        onClick={toggleFavorite}
+      >
+        <FaHeart />
+      </div>
 
       <div className="card-content">
 
