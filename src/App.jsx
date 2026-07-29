@@ -21,6 +21,7 @@ import PaymentConfirmation from "./pages/PaymentConfirmation/PaymentConfirmation
 import BookingSuccess from "./pages/BookingSuccess/BookingSuccess";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import TripPlanner from "./pages/TripPlanner/TripPlanner";
 
 function App() {
   return (
@@ -85,6 +86,8 @@ element={
 <Route path="/wishlist" element={<Wishlist />} />
 
 <Route path="/change-password" element={<ChangePassword />} />
+
+<Route path="/trip-planner" element={<TripPlanner />} />
 
 
 
