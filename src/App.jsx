@@ -22,6 +22,7 @@ import BookingSuccess from "./pages/BookingSuccess/BookingSuccess";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import TripPlanner from "./pages/TripPlanner/TripPlanner";
+import Weather from "./pages/Weather/Weather";
 
 function App() {
   return (
@@ -88,6 +89,8 @@ element={
 <Route path="/change-password" element={<ChangePassword />} />
 
 <Route path="/trip-planner" element={<TripPlanner />} />
+
+<Route path="/weather" element={<Weather />} />
 
 
 

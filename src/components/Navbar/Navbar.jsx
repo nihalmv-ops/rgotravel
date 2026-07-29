@@ -62,6 +62,10 @@ function Navbar() {
             AI Planner
           </NavLink>
 
+          <NavLink to="/weather" onClick={closeMenu}>
+            Weather
+          </NavLink>
+
           <a href="/#about" onClick={closeMenu}>
             About
           </a>

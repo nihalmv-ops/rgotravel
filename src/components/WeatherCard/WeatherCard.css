@@ -1,0 +1,190 @@
+/* ==========================
+   WEATHER CARD
+========================== */
+
+.weather-card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:22px;
+
+    padding:26px;
+
+    color:#fff;
+
+    min-height:180px;
+
+    transition:.35s;
+
+}
+
+.weather-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+}
+
+.weather-card.loading,
+.weather-card.error{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    gap:12px;
+
+    color:#dbeafe;
+
+}
+
+.weather-card.error button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 18px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+}
+
+.weather-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.weather-top h3{
+
+    font-size:20px;
+
+}
+
+.refresh-btn{
+
+    background:rgba(255,255,255,.1);
+
+    border:none;
+
+    color:#fff;
+
+    width:32px;
+
+    height:32px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.3s;
+
+}
+
+.refresh-btn:hover{
+
+    background:#2563eb;
+
+    transform:rotate(180deg);
+
+}
+
+.weather-country{
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    margin-bottom:14px;
+
+}
+
+.weather-temp{
+
+    font-size:44px;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+.weather-condition{
+
+    color:#dbeafe;
+
+    margin-bottom:18px;
+
+    font-size:14px;
+
+}
+
+.weather-stats{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+    padding-top:14px;
+
+}
+
+.weather-stats span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    color:#dbeafe;
+
+}
+
+.weather-stats svg{
+
+    color:#38bdf8;
+
+}
