@@ -440,6 +440,21 @@
 
 }
 
+.card-title-link{
+
+    text-decoration:none;
+
+    display:block;
+
+}
+
+.card-title-link h3,
+.card-title-link p{
+
+    text-decoration:none;
+
+}
+
 .destination-favorite.active:hover{
 
     background:#b91c1c;

@@ -23,6 +23,7 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import TripPlanner from "./pages/TripPlanner/TripPlanner";
 import Weather from "./pages/Weather/Weather";
+import DestinationDetails from "./pages/DestinationDetails/DestinationDetails";
 
 function App() {
   return (
@@ -91,6 +92,8 @@ element={
 <Route path="/trip-planner" element={<TripPlanner />} />
 
 <Route path="/weather" element={<Weather />} />
+
+<Route path="/destination/:id" element={<DestinationDetails />} />
 
 
 

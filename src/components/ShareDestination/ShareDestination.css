@@ -1,0 +1,91 @@
+/* ==========================
+   SHARE DESTINATION
+========================== */
+
+.share-destination{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+.share-label{
+
+    color:#dbeafe;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.share-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:18px;
+
+    justify-content:center;
+
+    transition:.3s;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+.share-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.share-btn.facebook:hover{ background:#1877f2; }
+
+.share-btn.whatsapp:hover{ background:#25d366; }
+
+.share-btn.instagram:hover{
+
+    background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+
+}
+
+.share-btn.copy{
+
+    width:auto;
+
+    padding:0 16px;
+
+    border-radius:30px;
+
+}
+
+.share-btn.copy:hover{ background:#2563eb; }
+
+.copied-label{
+
+    font-size:13px;
+
+    font-weight:600;
+
+}

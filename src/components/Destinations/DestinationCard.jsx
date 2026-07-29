@@ -36,7 +36,9 @@ function DestinationCard({ id, image, name, country, rating, price }) {
   return (
     <div className="destination-card">
 
-      <img src={image} alt={name} />
+      <Link to={`/destination/${id}`}>
+        <img src={image} alt={name} />
+      </Link>
 
       <div
         className={`destination-favorite ${isFavorite ? "active" : ""}`}
@@ -56,10 +58,12 @@ function DestinationCard({ id, image, name, country, rating, price }) {
 
       <div className="card-content">
 
-        <div>
+        <Link to={`/destination/${id}`} className="card-title-link">
+
           <h3>{name}</h3>
           <p>{country}</p>
-        </div>
+
+        </Link>
 
         <span className="rating">⭐ {rating}</span>
 

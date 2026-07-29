@@ -4,6 +4,7 @@ import WhyChoose from "../../components/WhyChoose/WhyChoose";
 import About from "../../components/About/About";
 import Packages from "../../components/Packages/Packages";
 import Testimonials from "../../components/Testimonials/Testimonials";
+import RecentlyViewed from "../../components/RecentlyViewed/RecentlyViewed";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <About />
       <Packages />
       <Testimonials />
+      <RecentlyViewed />
     </>
   );
 }
