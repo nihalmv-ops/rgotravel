@@ -170,6 +170,52 @@
 }
 
 /* ===================================
+   WEATHER BUTTON
+=================================== */
+
+.package-weather-btn{
+
+    position:absolute;
+
+    top:18px;
+
+    left:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:8px 14px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:rgba(15,23,42,.55);
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(6px);
+
+    transition:.3s;
+
+}
+
+.package-weather-btn:hover{
+
+    background:#2563eb;
+
+}
+
+/* ===================================
    CONTENT
 =================================== */
 

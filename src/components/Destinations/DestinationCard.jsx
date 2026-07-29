@@ -1,7 +1,9 @@
 import "./Destinations.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaCloudSun } from "react-icons/fa";
+
+import WeatherModal from "../WeatherModal/WeatherModal";
 
 function DestinationCard({ id, image, name, country, rating, price }) {
 
@@ -13,6 +15,8 @@ function DestinationCard({ id, image, name, country, rating, price }) {
     return favorites.includes(id);
 
   });
+
+  const [showWeather, setShowWeather] = useState(false);
 
   const toggleFavorite = () => {
 
@@ -40,6 +44,15 @@ function DestinationCard({ id, image, name, country, rating, price }) {
       >
         <FaHeart />
       </div>
+
+      <button
+        className="destination-weather-btn"
+        onClick={() => setShowWeather(true)}
+        title="Check weather"
+      >
+        <FaCloudSun />
+        Weather
+      </button>
 
       <div className="card-content">
 
@@ -73,6 +86,15 @@ function DestinationCard({ id, image, name, country, rating, price }) {
 </Link>
 
       </div>
+
+      {showWeather && (
+
+        <WeatherModal
+          place={`${name}, ${country}`}
+          onClose={() => setShowWeather(false)}
+        />
+
+      )}
 
     </div>
   );

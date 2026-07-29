@@ -8,8 +8,11 @@ import {
   FaClock,
   FaUsers,
   FaMapMarkerAlt,
-  FaStar
+  FaStar,
+  FaCloudSun
 } from "react-icons/fa";
+
+import WeatherModal from "../WeatherModal/WeatherModal";
 
 function PackageCard({
   id,
@@ -29,6 +32,8 @@ function PackageCard({
     return wishlist.includes(id);
 
   });
+
+  const [showWeather, setShowWeather] = useState(false);
 
   const toggleWishlist = () => {
 
@@ -58,6 +63,15 @@ function PackageCard({
         >
           <FaHeart />
         </div>
+
+        <button
+          className="package-weather-btn"
+          onClick={() => setShowWeather(true)}
+          title="Check weather"
+        >
+          <FaCloudSun />
+          Weather
+        </button>
 
       </div>
 
@@ -118,6 +132,15 @@ function PackageCard({
         </div>
 
       </div>
+
+      {showWeather && (
+
+        <WeatherModal
+          place={location}
+          onClose={() => setShowWeather(false)}
+        />
+
+      )}
 
     </div>
 
