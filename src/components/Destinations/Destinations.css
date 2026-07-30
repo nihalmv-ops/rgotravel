@@ -297,22 +297,32 @@
 /* ===============================
    TOOLBAR
 ================================== */
+/* ===============================
+   PREMIUM FILTER BAR
+================================== */
 
 .destination-toolbar{
 
-    display:flex;
+    width:100%;
+    max-width:920px;
 
-    flex-wrap:wrap;
+    margin:0 auto 50px;
 
-    justify-content:center;
+    display:grid;
 
-    gap:16px;
+    grid-template-columns:2.5fr 1fr 1fr 1fr;
 
-    margin-bottom:50px;
+    gap:14px;
+
+    align-items:center;
 
 }
 
+/* Search */
+
 .search-box{
+
+    height:48px;
 
     display:flex;
 
@@ -320,17 +330,15 @@
 
     gap:10px;
 
-    padding:12px 20px;
-
-    border-radius:30px;
+    padding:0 18px;
 
     background:#fff;
 
-    border:1px solid #d9e6f2;
+    border-radius:50px;
 
-    box-shadow:0 6px 16px rgba(0,0,0,.06);
+    border:1px solid #dbe4ef;
 
-    min-width:240px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 
 }
 
@@ -338,44 +346,87 @@
 
     color:#2563eb;
 
+    font-size:16px;
+
 }
 
 .search-box input{
+
+    width:100%;
 
     border:none;
 
     outline:none;
 
-    width:100%;
+    background:transparent;
 
-    font-size:15px;
-
-    color:#0f172a;
+    font-size:14px;
 
 }
 
+/* Dropdown */
+
 .destination-toolbar select{
 
-    padding:12px 18px;
+    height:48px;
 
-    border-radius:30px;
+    width:100%;
 
-    border:1px solid #d9e6f2;
+    padding:0 18px;
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    border-radius:50px;
 
     background:#fff;
-
-    color:#0f172a;
 
     font-size:14px;
 
     font-weight:600;
 
-    cursor:pointer;
+    color:#0f172a;
 
-    box-shadow:0 6px 16px rgba(0,0,0,.06);
+    border:1px solid #dbe4ef;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 
 }
 
+/* Hover */
+
+.search-box:hover,
+.destination-toolbar select:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.15);
+
+    transition:.3s;
+
+}
+
+/* Mobile */
+
+@media(max-width:900px){
+
+.destination-toolbar{
+
+    grid-template-columns:1fr;
+
+}
+
+.search-box,
+.destination-toolbar select{
+
+    width:100%;
+
+}
+
+}
 .no-results{
 
     text-align:center;
