@@ -116,6 +116,19 @@ function About() {
     </button>
 
       </Link>
+
+      <Link to="/blog">
+
+                <button className="blog-btn">
+
+        Read Our Blog
+
+        <FaArrowRight />
+
+    </button>
+
+      </Link>
+
                     </div>
 
                 </div>

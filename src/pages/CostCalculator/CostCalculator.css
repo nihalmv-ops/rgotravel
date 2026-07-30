@@ -1,0 +1,194 @@
+/* ==========================
+   COST CALCULATOR
+========================== */
+
+.calculator-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 20px 60px;
+
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #0ea5e9
+    );
+
+}
+
+.calculator-container{
+
+    width:100%;
+
+    max-width:520px;
+
+}
+
+.calculator-intro{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.calculator-icon{
+
+    font-size:44px;
+
+    color:#38bdf8;
+
+    margin-bottom:14px;
+
+}
+
+.calculator-intro h1{
+
+    color:#fff;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.calculator-intro p{
+
+    color:#dbeafe;
+
+}
+
+.calculator-card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:26px;
+
+    padding:34px;
+
+}
+
+.cost-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.cost-row label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#dbeafe;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.cost-row label svg{
+
+    color:#38bdf8;
+
+}
+
+.cost-input{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:12px;
+
+    padding:8px 14px;
+
+    width:140px;
+
+}
+
+.cost-input span{
+
+    color:#94a3b8;
+
+}
+
+.cost-input input{
+
+    width:100%;
+
+    background:none;
+
+    border:none;
+
+    outline:none;
+
+    color:#fff;
+
+    font-size:15px;
+
+    text-align:right;
+
+}
+
+.total-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:24px;
+
+    padding:20px 24px;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+}
+
+.total-row span{
+
+    color:#e0f2fe;
+
+    font-weight:600;
+
+}
+
+.total-row h2{
+
+    color:#fff;
+
+    font-size:28px;
+
+}

@@ -58,10 +58,6 @@ function Navbar() {
             Packages
           </a>
 
-          <NavLink to="/trip-planner" onClick={closeMenu}>
-            AI Planner
-          </NavLink>
-
           <a href="/#about" onClick={closeMenu}>
             About
           </a>

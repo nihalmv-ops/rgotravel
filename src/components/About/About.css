@@ -6,10 +6,10 @@
     padding:110px 8%;
     background:linear-gradient(
         180deg,
-        #96e1dc 0%,
-        #b5d2e9 35%,
-        #8cc3e6 70%,
-        #79adb7 100%
+        #ffffff 0%,
+        #f8fcff 35%,
+        #eaf7ff 70%,
+        #ffffff 100%
     );
 }
 
@@ -262,7 +262,8 @@
 }
 
 .gallery-btn,
-.learn-btn{
+.learn-btn,
+.blog-btn{
 
     display:flex;
 
@@ -323,6 +324,24 @@
 .learn-btn:hover{
 
     background:#2563eb;
+
+    color:#fff;
+
+}
+
+.blog-btn{
+
+    color:#38bdf8;
+
+    background:#fff;
+
+    border:2px solid #38bdf8;
+
+}
+
+.blog-btn:hover{
+
+    background:#38bdf8;
 
     color:#fff;
 

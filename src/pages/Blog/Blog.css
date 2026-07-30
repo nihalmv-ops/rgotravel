@@ -1,0 +1,202 @@
+/* ==========================
+   BLOG PAGE
+========================== */
+
+.blog-page{
+
+    min-height:100vh;
+
+    padding:120px 8% 80px;
+
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #0ea5e9
+    );
+
+}
+
+.blog-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+.blog-intro{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.blog-intro h1{
+
+    color:#fff;
+
+    font-size:42px;
+
+    margin-bottom:12px;
+
+}
+
+.blog-intro p{
+
+    color:#dbeafe;
+
+}
+
+.blog-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:32px;
+
+}
+
+.blog-card{
+
+    text-decoration:none;
+
+    background:rgba(255,255,255,.1);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.blog-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+
+}
+
+.blog-card img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+}
+
+.blog-card-content{
+
+    padding:22px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+}
+
+.blog-category{
+
+    color:#38bdf8;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:10px;
+
+}
+
+.blog-card-content h3{
+
+    color:#fff;
+
+    font-size:20px;
+
+    margin-bottom:10px;
+
+}
+
+.blog-card-content p{
+
+    color:#dbeafe;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-bottom:16px;
+
+    flex:1;
+
+}
+
+.blog-meta{
+
+    display:flex;
+
+    gap:16px;
+
+    margin-bottom:16px;
+
+}
+
+.blog-meta span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#94a3b8;
+
+    font-size:12px;
+
+}
+
+.read-more{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#38bdf8;
+
+    font-weight:700;
+
+    font-size:14px;
+
+}
+
+@media(max-width:768px){
+
+.blog-intro h1{
+
+    font-size:32px;
+
+}
+
+}

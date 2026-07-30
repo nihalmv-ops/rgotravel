@@ -24,6 +24,11 @@ import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import TripPlanner from "./pages/TripPlanner/TripPlanner";
 import Weather from "./pages/Weather/Weather";
 import DestinationDetails from "./pages/DestinationDetails/DestinationDetails";
+import Blog from "./pages/Blog/Blog";
+import BlogPost from "./pages/BlogPost/BlogPost";
+import Compare from "./pages/Compare/Compare";
+import CostCalculator from "./pages/CostCalculator/CostCalculator";
+import Chatbot from "./components/Chatbot/Chatbot";
 
 function App() {
   return (
@@ -95,10 +100,19 @@ element={
 
 <Route path="/destination/:id" element={<DestinationDetails />} />
 
+<Route path="/blog" element={<Blog />} />
+
+<Route path="/blog/:slug" element={<BlogPost />} />
+
+<Route path="/compare" element={<Compare />} />
+
+<Route path="/cost-calculator" element={<CostCalculator />} />
+
 
 
       </Routes>
         <Footer />
+        <Chatbot />
     </>
   );
 }
