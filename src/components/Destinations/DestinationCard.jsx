@@ -5,43 +5,79 @@ import { FaHeart, FaCloudSun } from "react-icons/fa";
 
 import WeatherModal from "../WeatherModal/WeatherModal";
 
-function DestinationCard({ id, image, name, country, rating, price }) {
-
-  const [isFavorite, setIsFavorite] = useState(() => {
-
-    const favorites =
-      JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
-
-    return favorites.includes(id);
-
-  });
+function DestinationCard({
+  id,
+  image,
+  name,
+  country,
+  rating,
+  price,
+}) {
 
   const [showWeather, setShowWeather] = useState(false);
 
+  const [isFavorite, setIsFavorite] = useState(() => {
+
+    const wishlist =
+      JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    return wishlist.some((item) => item.id === id);
+
+  });
+
   const toggleFavorite = () => {
 
-    const favorites =
-      JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
+    const wishlist =
+      JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    const next = isFavorite
-      ? favorites.filter((itemId) => itemId !== id)
-      : [...favorites, id];
+    let updatedWishlist;
 
-    localStorage.setItem("favoriteDestinations", JSON.stringify(next));
+    if (isFavorite) {
+
+      updatedWishlist = wishlist.filter(
+        (item) => item.id !== id
+      );
+
+    } else {
+
+      updatedWishlist = [
+        ...wishlist,
+        {
+          id,
+          image,
+          name,
+          country,
+          rating,
+          price,
+        },
+      ];
+
+    }
+
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify(updatedWishlist)
+    );
 
     setIsFavorite(!isFavorite);
 
   };
 
   return (
+
     <div className="destination-card">
 
       <Link to={`/destination/${id}`}>
-        <img src={image} alt={name} />
+        <img
+          src={image}
+          alt={name}
+        />
       </Link>
 
       <div
-        className={`destination-favorite ${isFavorite ? "active" : ""}`}
+        className={`destination-favorite ${
+          isFavorite ? "active" : ""
+        }`}
         onClick={toggleFavorite}
       >
         <FaHeart />
@@ -50,7 +86,6 @@ function DestinationCard({ id, image, name, country, rating, price }) {
       <button
         className="destination-weather-btn"
         onClick={() => setShowWeather(true)}
-        title="Check weather"
       >
         <FaCloudSun />
         Weather
@@ -58,14 +93,17 @@ function DestinationCard({ id, image, name, country, rating, price }) {
 
       <div className="card-content">
 
-        <Link to={`/destination/${id}`} className="card-title-link">
-
+        <Link
+          to={`/destination/${id}`}
+          className="card-title-link"
+        >
           <h3>{name}</h3>
           <p>{country}</p>
-
         </Link>
 
-        <span className="rating">⭐ {rating}</span>
+        <span className="rating">
+          ⭐ {rating}
+        </span>
 
       </div>
 
@@ -73,21 +111,21 @@ function DestinationCard({ id, image, name, country, rating, price }) {
 
         <h4>{price}</h4>
 
-       <Link
-        to="/booking"
-        state={{
-          packageData: {
-            image,
-            title: name,
-            location: country,
-            price
-          }
-        }}
-       >
-  <button className="book-btn">
-    Book Now
-  </button>
-</Link>
+        <Link
+          to="/booking"
+          state={{
+            packageData: {
+              image,
+              title: name,
+              location: country,
+              price,
+            },
+          }}
+        >
+          <button className="book-btn">
+            Book Now
+          </button>
+        </Link>
 
       </div>
 
@@ -101,7 +139,9 @@ function DestinationCard({ id, image, name, country, rating, price }) {
       )}
 
     </div>
+
   );
+
 }
 
 export default DestinationCard;

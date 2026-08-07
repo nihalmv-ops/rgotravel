@@ -20,7 +20,6 @@ function PaymentConfirmation() {
 
   const [processing, setProcessing] = useState(false);
 
-  // If someone lands here directly without going through Booking, send them back
   if (!packageData || !form) {
 
     return (
@@ -49,36 +48,99 @@ function PaymentConfirmation() {
 
     setProcessing(true);
 
-    // Simulate a short payment-processing delay
-
     setTimeout(() => {
 
       const booking = {
+
         id: Date.now(),
+
         image: packageData.image,
+
         title: packageData.title,
+
         location: packageData.location,
+
         days: packageData.days,
+
         people: packageData.people,
+
         price: `$${totalPrice}`,
+
         name: form.name,
+
         email: form.email,
+
         phone: form.phone,
+
         date: form.date,
+
         travelers: form.travelers,
+
         payment: form.payment,
+
         message: form.message,
+
         status: "Confirmed"
+
       };
+
+      // Save Booking
 
       const bookings =
         JSON.parse(localStorage.getItem("bookings")) || [];
 
       bookings.push(booking);
 
-      localStorage.setItem("bookings", JSON.stringify(bookings));
+      localStorage.setItem(
+        "bookings",
+        JSON.stringify(bookings)
+      );
 
-      navigate("/booking-success", { state: { booking } });
+      // Save Notifications
+
+      const notifications =
+        JSON.parse(localStorage.getItem("notifications")) || [];
+
+      notifications.unshift({
+
+        id: Date.now(),
+
+        type: "booking",
+
+        title: "Booking Confirmed",
+
+        message: `Your booking for ${booking.title} has been confirmed.`,
+
+        date: new Date().toLocaleString(),
+
+        read: false
+
+      });
+
+      notifications.unshift({
+
+        id: Date.now() + 1,
+
+        type: "payment",
+
+        title: "Payment Successful",
+
+        message: `Payment of $${totalPrice} completed successfully.`,
+
+        date: new Date().toLocaleString(),
+
+        read: false
+
+      });
+
+      localStorage.setItem(
+        "notifications",
+        JSON.stringify(notifications)
+      );
+
+      navigate("/booking-success", {
+        state: { booking }
+      });
 
     }, 1400);
 
@@ -96,15 +158,21 @@ function PaymentConfirmation() {
 
         <div className="payment-trip">
 
-          <img src={packageData.image} alt={packageData.title} />
+          <img
+            src={packageData.image}
+            alt={packageData.title}
+          />
 
           <div>
 
             <h2>{packageData.title}</h2>
 
             <p>
+
               <FaMapMarkerAlt />
+
               {packageData.location}
+
             </p>
 
           </div>
@@ -114,18 +182,27 @@ function PaymentConfirmation() {
         <div className="payment-details">
 
           <div>
+
             <FaCalendarAlt />
+
             <span>{form.date}</span>
+
           </div>
 
           <div>
+
             <FaUsers />
+
             <span>{form.travelers} Traveler(s)</span>
+
           </div>
 
           <div>
+
             <FaCreditCard />
+
             <span>{form.payment}</span>
+
           </div>
 
         </div>
@@ -144,13 +221,18 @@ function PaymentConfirmation() {
           disabled={processing}
         >
 
-          {processing ? "Processing Payment..." : `Pay $${totalPrice} Now`}
+          {processing
+            ? "Processing Payment..."
+            : `Pay $${totalPrice} Now`}
 
         </button>
 
         <p className="secure-note">
+
           <FaShieldAlt />
+
           This is a demo checkout — no real payment is processed.
+
         </p>
 
       </div>

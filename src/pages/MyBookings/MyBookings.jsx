@@ -70,6 +70,8 @@ function MyBookings() {
 
   };
 
+  
+
   const renderStatus = (status) => {
 
     if (status === "Cancelled") {

@@ -11,7 +11,12 @@ import {
   FaSignOutAlt,
   FaCog,
   FaSuitcase,
-  FaUser
+  FaUser,
+  FaHeart,
+  FaStar,
+  FaCreditCard,
+  FaBell,
+  FaQuestionCircle
 } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext";
@@ -87,38 +92,78 @@ function Navbar() {
 
               {showProfile && (
 
-                <div className="dropdown">
+         <div className="dropdown">
 
-                  <Link
-                    to="/profile"
-                    onClick={closeMenu}
-                  >
-                    <FaUser />
-                    Profile
-                  </Link>
+  <Link
+    to="/profile"
+    onClick={closeMenu}
+  >
+    <FaUser />
+    Profile
+  </Link>
 
-                  <Link
-                    to="/my-bookings"
-                    onClick={closeMenu}
-                  >
-                    <FaSuitcase />
-                    My Bookings
-                  </Link>
+  <Link
+    to="/my-bookings"
+    onClick={closeMenu}
+  >
+    <FaSuitcase />
+    My Bookings
+  </Link>
 
-                  <Link
-                    to="/settings"
-                    onClick={closeMenu}
-                  >
-                    <FaCog />
-                    Settings
-                  </Link>
+  <Link
+    to="/wishlist"
+    onClick={closeMenu}
+  >
+    <FaHeart />
+    Wishlist
+  </Link>
 
-                  <button onClick={handleLogout}>
-                    <FaSignOutAlt />
-                    Logout
-                  </button>
+  <Link
+    to="/reviews"
+    onClick={closeMenu}
+  >
+    <FaStar />
+    Reviews
+  </Link>
 
-                </div>
+  <Link
+    to="/payments"
+    onClick={closeMenu}
+  >
+    <FaCreditCard />
+    Payments
+  </Link>
+
+  <Link
+    to="/notifications"
+    onClick={closeMenu}
+  >
+    <FaBell />
+    Notifications
+  </Link>
+
+  <Link
+    to="/settings"
+    onClick={closeMenu}
+  >
+    <FaCog />
+    Settings
+  </Link>
+
+  <Link
+    to="/contact"
+    onClick={closeMenu}
+  >
+    <FaQuestionCircle />
+    Help Center
+  </Link>
+
+  <button onClick={handleLogout}>
+    <FaSignOutAlt />
+    Logout
+  </button>
+
+</div>
 
               )}
 

@@ -1,5 +1,6 @@
 import "./BookingSuccess.css";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLocation, Link } from "react-router-dom";
 
@@ -13,6 +14,34 @@ function BookingSuccess() {
 
   const booking = location.state?.booking;
 
+  useEffect(() => {
+
+    if (!booking) return;
+
+    const notifications =
+      JSON.parse(localStorage.getItem("notifications")) || [];
+
+    notifications.unshift({
+
+      id: Date.now(),
+
+      type: "booking",
+
+      title: "Booking Confirmed",
+
+      message: `Your trip to ${booking.title} has been confirmed.`,
+
+      date: new Date().toLocaleString()
+
+    });
+
+    localStorage.setItem(
+      "notifications",
+      JSON.stringify(notifications)
+    );
+
+  }, [booking]);
+
   if (!booking) {
 
     return (
@@ -23,7 +52,10 @@ function BookingSuccess() {
 
           <h1>No recent booking found</h1>
 
-          <Link to="/" className="success-btn primary">
+          <Link
+            to="/"
+            className="success-btn primary"
+          >
             Back to Home
           </Link>
 
@@ -45,7 +77,11 @@ function BookingSuccess() {
           className="success-icon"
           initial={{ scale: 0, rotate: -45 }}
           animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 260, damping: 18 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 18
+          }}
         >
 
           <motion.svg
@@ -61,7 +97,7 @@ function BookingSuccess() {
               className="checkmark-circle"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              transition={{ duration: 0.6 }}
             />
 
             <motion.path
@@ -70,7 +106,10 @@ function BookingSuccess() {
               className="checkmark-check"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 0.5, delay: 0.5, ease: "easeInOut" }}
+              transition={{
+                duration: 0.5,
+                delay: 0.5
+              }}
             />
 
           </motion.svg>
@@ -90,8 +129,8 @@ function BookingSuccess() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.85 }}
         >
-          Your trip to {booking.location || booking.title} is booked. A
-          confirmation has been saved to your account.
+          Your trip to {booking.location || booking.title} is booked.
+          A confirmation has been saved to your account.
         </motion.p>
 
         <motion.div
@@ -102,18 +141,27 @@ function BookingSuccess() {
         >
 
           <div>
+
             <span>Booking ID</span>
+
             <strong>{booking.id}</strong>
+
           </div>
 
           <div>
+
             <span>Trip</span>
+
             <strong>{booking.title}</strong>
+
           </div>
 
           <div>
+
             <span>Total Paid</span>
+
             <strong>{booking.price}</strong>
+
           </div>
 
         </motion.div>
@@ -129,13 +177,22 @@ function BookingSuccess() {
             className="success-btn"
             onClick={() => generateReceipt(booking)}
           >
+
             <FaDownload />
+
             Download Receipt
+
           </button>
 
-          <Link to="/my-bookings" className="success-btn primary">
+          <Link
+            to="/my-bookings"
+            className="success-btn primary"
+          >
+
             <FaSuitcase />
+
             View My Bookings
+
           </Link>
 
         </motion.div>

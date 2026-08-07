@@ -2,23 +2,26 @@ import "./Booking.css";
 
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Booking() {
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  // If we came here from "Edit Booking" on My Bookings, this will be set
+  // Edit Booking
   const editBooking = location.state?.editBooking || null;
-
   const isEditing = Boolean(editBooking);
 
+  // Package Data
   const packageData = isEditing
     ? {
         image: editBooking.image,
         title: editBooking.title,
         location: editBooking.location,
-        price: editBooking.price
+        days: editBooking.days,
+        people: editBooking.people,
+        price: editBooking.price,
       }
     : location.state?.packageData || {};
 
@@ -29,68 +32,68 @@ function Booking() {
     date: editBooking?.date || "",
     travelers: editBooking?.travelers || 1,
     payment: editBooking?.payment || "Card",
-    message: editBooking?.message || ""
+    message: editBooking?.message || "",
   });
 
-  const price =
-    Number(String(packageData.price || "$0").replace("$", ""));
+  const price = Number(
+    String(packageData.price || "$0").replace("$", "")
+  );
 
   const totalPrice = price * Number(form.travelers);
 
+  // Input Change
   const handleChange = (e) => {
 
     const { name, value } = e.target;
 
     setForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
   };
 
+  // Submit
   const handleSubmit = (e) => {
 
     e.preventDefault();
 
     if (isEditing) {
 
-      // Update the existing booking in place, no payment step needed
-
       const bookings =
         JSON.parse(localStorage.getItem("bookings")) || [];
 
-      const updated = bookings.map((b) =>
-        b.id === editBooking.id
+      const updatedBookings = bookings.map((booking) =>
+        booking.id === editBooking.id
           ? {
-              ...b,
-              name: form.name,
-              email: form.email,
-              phone: form.phone,
-              date: form.date,
-              travelers: form.travelers,
+              ...booking,
+              ...form,
+              travelers: Number(form.travelers),
               payment: form.payment,
-              message: form.message,
-              price: `$${totalPrice}`
+              price: `$${totalPrice}`,
             }
-          : b
+          : booking
       );
 
-      localStorage.setItem("bookings", JSON.stringify(updated));
+      localStorage.setItem(
+        "bookings",
+        JSON.stringify(updatedBookings)
+      );
+
+      toast.success("Booking Updated Successfully!");
 
       navigate("/my-bookings");
 
       return;
-
     }
 
-    // New booking: go to payment confirmation before saving anything
-
+    // Go to Payment Page
     navigate("/payment-confirmation", {
       state: {
         packageData,
         form,
-        totalPrice
-      }
+        totalPrice,
+      },
     });
 
   };
@@ -102,7 +105,9 @@ function Booking() {
       <div className="booking-container">
 
         <h1>
-          {isEditing ? "Edit Your Booking" : "Book Your Dream Trip"}
+          {isEditing
+            ? "Edit Your Booking"
+            : "Book Your Dream Trip"}
         </h1>
 
         <p>
@@ -126,7 +131,9 @@ function Booking() {
 
             <p>📍 {packageData.location}</p>
 
-            <p>🗓 {packageData.days}</p>
+            {packageData.days && (
+              <p>🗓 {packageData.days}</p>
+            )}
 
             <h3>{packageData.price}</h3>
 
@@ -178,7 +185,6 @@ function Booking() {
             type="number"
             name="travelers"
             min="1"
-            placeholder="Number of Travelers"
             value={form.travelers}
             onChange={handleChange}
             required
@@ -192,12 +198,13 @@ function Booking() {
             onChange={handleChange}
           />
 
+          {/* Payment */}
+
           <div className="payment-box">
 
-            <h3>Select Payment</h3>
+            <h3>Select Payment Method</h3>
 
             <label>
-
               <input
                 type="radio"
                 name="payment"
@@ -205,13 +212,10 @@ function Booking() {
                 checked={form.payment === "Card"}
                 onChange={handleChange}
               />
-
               Credit Card
-
             </label>
 
             <label>
-
               <input
                 type="radio"
                 name="payment"
@@ -219,13 +223,10 @@ function Booking() {
                 checked={form.payment === "UPI"}
                 onChange={handleChange}
               />
-
               UPI
-
             </label>
 
             <label>
-
               <input
                 type="radio"
                 name="payment"
@@ -233,26 +234,24 @@ function Booking() {
                 checked={form.payment === "PayPal"}
                 onChange={handleChange}
               />
-
               PayPal
-
             </label>
 
           </div>
 
+          {/* Total */}
+
           <div className="total-price">
 
-            <h2>
-
-              Total: ${totalPrice}
-
-            </h2>
+            <h2>Total: ${totalPrice}</h2>
 
           </div>
 
           <button type="submit">
 
-            {isEditing ? "Save Changes" : "Continue to Payment"}
+            {isEditing
+              ? "Save Changes"
+              : "Continue to Payment"}
 
           </button>
 

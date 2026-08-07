@@ -3,31 +3,36 @@ import "./Wishlist.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import packages from "../../data/packages";
-
-import { FaHeartBroken, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import {
+  FaHeartBroken,
+  FaMapMarkerAlt,
+  FaStar
+} from "react-icons/fa";
 
 function Wishlist() {
 
-  const [wishlistIds, setWishlistIds] = useState(
-    () => JSON.parse(localStorage.getItem("wishlist")) || []
+  const [wishlist, setWishlist] = useState(
+    JSON.parse(localStorage.getItem("wishlist")) || []
   );
 
   useEffect(() => {
 
-    localStorage.setItem("wishlist", JSON.stringify(wishlistIds));
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify(wishlist)
+    );
 
-  }, [wishlistIds]);
+  }, [wishlist]);
 
   const removeFromWishlist = (id) => {
 
-    setWishlistIds((prev) => prev.filter((itemId) => itemId !== id));
+    const updated = wishlist.filter(
+      (item) => item.id !== id
+    );
+
+    setWishlist(updated);
 
   };
-
-  const savedPackages = packages.filter((pkg) =>
-    wishlistIds.includes(pkg.id)
-  );
 
   return (
 
@@ -35,20 +40,27 @@ function Wishlist() {
 
       <div className="wishlist-container">
 
-        <h1>My Wishlist</h1>
+        <h1>My Wishlist ❤️</h1>
 
-        <p>Trips you've saved for later.</p>
+        <p>Your favorite destinations.</p>
 
-        {savedPackages.length === 0 ? (
+        {wishlist.length === 0 ? (
 
           <div className="wishlist-empty">
 
-            <FaHeartBroken />
+            <FaHeartBroken size={70} />
 
-            <p>Your wishlist is empty.</p>
+            <h2>No destinations saved</h2>
 
-            <Link to="/#packages" className="wishlist-btn">
-              Explore Packages
+            <p>
+              Start exploring and save your favorite places.
+            </p>
+
+            <Link
+              to="/#destinations"
+              className="wishlist-btn"
+            >
+              Explore Destinations
             </Link>
 
           </div>
@@ -57,36 +69,70 @@ function Wishlist() {
 
           <div className="wishlist-grid">
 
-            {savedPackages.map((pkg) => (
+            {wishlist.map((item) => (
 
-              <div className="wishlist-card" key={pkg.id}>
+              <div
+                className="wishlist-card"
+                key={item.id}
+              >
 
-                <img src={pkg.image} alt={pkg.title} />
+                <img
+                  src={item.image}
+                  alt={item.name}
+                />
 
                 <div className="wishlist-content">
 
-                  <h3>{pkg.title}</h3>
+                  <h3>{item.name}</h3>
 
                   <p>
                     <FaMapMarkerAlt />
-                    {pkg.location}
+                    {item.country}
                   </p>
 
                   <p>
-                    <FaClock />
-                    {pkg.days}
+                    <FaStar />
+                    {item.rating}
                   </p>
 
                   <div className="wishlist-bottom">
 
-                    <h4>{pkg.price}</h4>
+                    <h4>{item.price}</h4>
 
-                    <button
-                      className="remove-btn"
-                      onClick={() => removeFromWishlist(pkg.id)}
-                    >
-                      Remove
-                    </button>
+                    <div className="wishlist-actions">
+
+                      <Link
+                        to={`/destination/${item.id}`}
+                        className="details-btn"
+                      >
+                        View
+                      </Link>
+
+                      <Link
+                        to="/booking"
+                        state={{
+                          packageData: {
+                            image: item.image,
+                            title: item.name,
+                            location: item.country,
+                            price: item.price
+                          }
+                        }}
+                        className="book-btn"
+                      >
+                        Book
+                      </Link>
+
+                      <button
+                        className="remove-btn"
+                        onClick={() =>
+                          removeFromWishlist(item.id)
+                        }
+                      >
+                        Remove
+                      </button>
+
+                    </div>
 
                   </div>
 

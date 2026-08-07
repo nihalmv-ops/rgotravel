@@ -1,8 +1,8 @@
 import {
   createContext,
   useContext,
-  useState,
   useEffect,
+  useState
 } from "react";
 
 const AuthContext = createContext();
