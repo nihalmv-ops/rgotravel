@@ -1,9 +1,15 @@
 import "./Destinations.css";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHeart, FaCloudSun } from "react-icons/fa";
+
+import {
+  FaHeart,
+  FaCloudSun,
+} from "react-icons/fa";
 
 import WeatherModal from "../WeatherModal/WeatherModal";
+import { addNotification } from "../../utils/notifications";
 
 function DestinationCard({
   id,
@@ -13,60 +19,55 @@ function DestinationCard({
   rating,
   price,
 }) {
+  const [isFavorite, setIsFavorite] = useState(() => {
+    const favorites =
+      JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
+
+    return favorites.includes(id);
+  });
 
   const [showWeather, setShowWeather] = useState(false);
 
-  const [isFavorite, setIsFavorite] = useState(() => {
-
-    const wishlist =
-      JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    return wishlist.some((item) => item.id === id);
-
-  });
-
   const toggleFavorite = () => {
-
-    const wishlist =
-      JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    let updatedWishlist;
+    const favorites =
+      JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
 
     if (isFavorite) {
-
-      updatedWishlist = wishlist.filter(
-        (item) => item.id !== id
+      const updated = favorites.filter(
+        (itemId) => itemId !== id
       );
 
-    } else {
+      localStorage.setItem(
+        "favoriteDestinations",
+        JSON.stringify(updated)
+      );
 
-      updatedWishlist = [
-        ...wishlist,
-        {
-          id,
-          image,
-          name,
-          country,
-          rating,
-          price,
-        },
-      ];
+      setIsFavorite(false);
 
+      return;
     }
 
+    const updated = [...favorites, id];
+
     localStorage.setItem(
-      "wishlist",
-      JSON.stringify(updatedWishlist)
+      "favoriteDestinations",
+      JSON.stringify(updated)
     );
 
-    setIsFavorite(!isFavorite);
+    setIsFavorite(true);
 
+    // Add notification
+    addNotification({
+      type: "wishlist",
+      title: "❤️ Added to Wishlist",
+      message: `${name} has been added to your wishlist.`,
+    });
   };
 
   return (
-
     <div className="destination-card">
 
+      {/* Image */}
       <Link to={`/destination/${id}`}>
         <img
           src={image}
@@ -74,23 +75,34 @@ function DestinationCard({
         />
       </Link>
 
-      <div
+      {/* Favorite */}
+      <button
+        type="button"
         className={`destination-favorite ${
           isFavorite ? "active" : ""
         }`}
         onClick={toggleFavorite}
+        aria-label={
+          isFavorite
+            ? "Remove from wishlist"
+            : "Add to wishlist"
+        }
       >
         <FaHeart />
-      </div>
+      </button>
 
+      {/* Weather */}
       <button
+        type="button"
         className="destination-weather-btn"
         onClick={() => setShowWeather(true)}
+        title="Check weather"
       >
         <FaCloudSun />
         Weather
       </button>
 
+      {/* Content */}
       <div className="card-content">
 
         <Link
@@ -107,6 +119,7 @@ function DestinationCard({
 
       </div>
 
+      {/* Footer */}
       <div className="card-footer">
 
         <h4>{price}</h4>
@@ -115,6 +128,7 @@ function DestinationCard({
           to="/booking"
           state={{
             packageData: {
+              id,
               image,
               title: name,
               location: country,
@@ -122,26 +136,26 @@ function DestinationCard({
             },
           }}
         >
-          <button className="book-btn">
+          <button
+            type="button"
+            className="book-btn"
+          >
             Book Now
           </button>
         </Link>
 
       </div>
 
+      {/* Weather Modal */}
       {showWeather && (
-
         <WeatherModal
           place={`${name}, ${country}`}
           onClose={() => setShowWeather(false)}
         />
-
       )}
 
     </div>
-
   );
-
 }
 
 export default DestinationCard;

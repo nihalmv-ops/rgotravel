@@ -67,9 +67,7 @@ function Navbar() {
             About
           </a>
 
-          <NavLink to="/gallery" onClick={closeMenu}>
-            Gallery
-          </NavLink>
+        
 
           <NavLink to="/contact" onClick={closeMenu}>
             Contact

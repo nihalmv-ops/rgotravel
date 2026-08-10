@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 
 import { generateReceipt } from "../../utils/generateReceipt";
+import { addNotification } from "../../utils/notifications";
 
 function MyBookings() {
 
@@ -48,6 +49,14 @@ function MyBookings() {
 
     updateBookings(next);
 
+    const cancelled = bookings.find((b) => b.id === id);
+
+    if (cancelled) {
+
+      addNotification(`Booking cancelled: ${cancelled.title}`);
+
+    }
+
   };
 
   const handleRemove = (id) => {
@@ -69,8 +78,6 @@ function MyBookings() {
     navigate("/booking", { state: { editBooking: booking } });
 
   };
-
-  
 
   const renderStatus = (status) => {
 

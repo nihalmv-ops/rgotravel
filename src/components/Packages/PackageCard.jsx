@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 
 import WeatherModal from "../WeatherModal/WeatherModal";
+import { addNotification } from "../../utils/notifications";
 
 function PackageCard({
   id,
@@ -44,6 +45,12 @@ function PackageCard({
       : [...wishlist, id];
 
     localStorage.setItem("wishlist", JSON.stringify(next));
+
+    if (!isSaved) {
+
+      addNotification(`Added "${title}" to your wishlist ❤️`);
+
+    }
 
     setIsSaved(!isSaved);
 
