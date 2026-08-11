@@ -3,7 +3,6 @@ import "./Testimonials.css";
 import testimonials from "../../data/testimonials";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
@@ -11,9 +10,7 @@ import "swiper/css";
 import { FaStar } from "react-icons/fa";
 
 function Testimonials() {
-
   return (
-
     <section className="testimonials">
 
       <div className="testimonial-heading">
@@ -33,46 +30,76 @@ function Testimonials() {
         loop={true}
         spaceBetween={30}
         breakpoints={{
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1200: { slidesPerView: 3 },
+          0: {
+            slidesPerView: 1,
+          },
+
+          768: {
+            slidesPerView: 2,
+          },
+
+          1200: {
+            slidesPerView: 3,
+          },
         }}
       >
 
-        {testimonials.map((item) => (
+        {testimonials.map((item) => {
 
-          <SwiperSlide key={item.id}>
+          // Safely convert rating to a number
+          const rating = Math.min(
+            5,
+            Math.max(
+              0,
+              Number(item.rating) || 0
+            )
+          );
 
-            <div className="testimonial-card">
+          return (
 
-              <img src={item.image} alt={item.name} />
+            <SwiperSlide key={item.id}>
 
-              <h3>{item.name}</h3>
+              <div className="testimonial-card">
 
-              <span>{item.country}</span>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                />
 
-              <div className="stars">
+                <h3>{item.name}</h3>
 
-                {[...Array(item.rating)].map((_, index) => (
-                  <FaStar key={index} />
-                ))}
+                <span>{item.country}</span>
+
+                <div className="stars">
+
+                  {[1, 2, 3, 4, 5].map((star) => (
+
+                    <FaStar
+                      key={star}
+                      className={
+                        star <= rating
+                          ? "star active"
+                          : "star"
+                      }
+                    />
+
+                  ))}
+
+                </div>
+
+                <p>{item.review}</p>
 
               </div>
 
-              <p>{item.review}</p>
+            </SwiperSlide>
 
-            </div>
-
-          </SwiperSlide>
-
-        ))}
+          );
+        })}
 
       </Swiper>
 
     </section>
-
   );
-
 }
 
 export default Testimonials;
