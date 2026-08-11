@@ -1,6 +1,6 @@
 import "./Testimonials.css";
 
-import testimonials from "../../data/testimonials";
+import testimonials from "../../data/Testimonials";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
