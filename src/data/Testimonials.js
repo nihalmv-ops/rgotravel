@@ -1,15 +1,9 @@
-import testimonial1 from "../assets/images/testimonial1.jpg";
-import testimonial2 from "../assets/images/testimonial2.jpg";
-import testimonial3 from "../assets/images/testimonial3.jpg";
-import testimonial4 from "../assets/images/testimonial4.jpg";
-
-
 const testimonials = [
   {
     id: 1,
     name: "Arun Kumar",
     country: "India",
-    image: testimonial1,
+    image: "https://i.pravatar.cc/150?img=12",
     rating: 5,
     review:
       "Amazing travel experience! Everything was perfectly organized."
@@ -19,8 +13,8 @@ const testimonials = [
     id: 2,
     name: "Sarah Wilson",
     country: "United Kingdom",
-    image: testimonial2,
-    rating: 4,
+    image: "https://i.pravatar.cc/150?img=47",
+    rating: 5,
     review:
       "Beautiful destinations and excellent service. Highly recommended."
   },
@@ -29,20 +23,20 @@ const testimonials = [
     id: 3,
     name: "David Lee",
     country: "Singapore",
-    image: testimonial3,
-    rating: 5,
+    image: "https://i.pravatar.cc/150?img=33",
+    rating: 4,
     review:
       "GoTravel made our vacation unforgettable."
   },
 
-   {
+  {
     id: 4,
-    name: "David Sachu",
-    country: "Singapore",
-    image: testimonial4,
+    name: "Emma Johnson",
+    country: "Australia",
+    image: "https://i.pravatar.cc/150?img=44",
     rating: 5,
     review:
-      "GoTravel made our vacation unforgettable."
+      "Excellent service and wonderful destinations."
   }
 ];
 

@@ -1,85 +1,42 @@
-/* ===============================
-   NOT FOUND PAGE
-================================ */
-
 .not-found-page {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    background: linear-gradient(
-        135deg,
-        #f8fcff,
-        #e0f2fe
-    );
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #f8fafc;
 }
 
 .not-found-card {
-    width: 100%;
-    max-width: 600px;
-    padding: 60px 40px;
-    text-align: center;
-
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 30px;
-
-    box-shadow:
-        0 25px 60px rgba(15, 23, 42, 0.12);
+  text-align: center;
+  max-width: 600px;
 }
 
 .not-found-card h1 {
-    font-size: 100px;
-    line-height: 1;
-    margin-bottom: 20px;
-
-    color: #2563eb;
-    font-weight: 800;
+  font-size: 100px;
+  margin: 0;
+  color: #2563eb;
 }
 
 .not-found-card h2 {
-    font-size: 30px;
-    color: #0f172a;
-    margin-bottom: 15px;
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #0f172a;
 }
 
 .not-found-card p {
-    color: #64748b;
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 30px;
+  color: #64748b;
+  margin-bottom: 30px;
 }
 
 .not-found-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 13px 28px;
-
-    border-radius: 50px;
-    text-decoration: none;
-
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #38bdf8
-    );
-
-    color: #fff;
-    font-weight: 600;
-
-    transition: 0.3s;
-}
-
-.not-found-btn:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 15px 30px rgba(37, 99, 235, 0.25);
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
