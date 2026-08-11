@@ -1,55 +1,78 @@
-.not-found-page {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  background: #f8fafc;
+/* ==========================
+   404 NOT FOUND
+========================== */
+
+.notfound-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:120px 20px 60px;
+    text-align:center;
+    background:linear-gradient(135deg, #0f172a, #1e3a8a, #0ea5e9);
 }
 
-.not-found-card {
-  text-align: center;
-  max-width: 600px;
+.notfound-card{
+    max-width:480px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:28px;
+    padding:50px 40px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
-.not-found-card h1 {
-  font-size: 100px;
-  margin: 0;
-  color: #2563eb;
+.notfound-icon{
+    font-size:60px;
+    color:#38bdf8;
+    margin-bottom:18px;
+    animation:spin 6s linear infinite;
 }
 
-.not-found-card h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
-  color: #0f172a;
+@keyframes spin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
 }
 
-.not-found-card p {
-  color: #64748b;
-  margin-bottom: 30px;
+.notfound-card h1{
+    font-size:80px;
+    color:#fff;
+    line-height:1;
+    margin-bottom:10px;
 }
 
-.not-found-btn {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 30px;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
+.notfound-card h2{
+    color:#fff;
+    font-size:22px;
+    margin-bottom:12px;
 }
 
-@media (max-width: 600px) {
+.notfound-card p{
+    color:#dbeafe;
+    margin-bottom:30px;
+}
 
-    .not-found-card {
-        padding: 45px 25px;
-    }
+.notfound-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 30px;
+    border-radius:50px;
+    text-decoration:none;
+    color:#fff;
+    font-weight:700;
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+    transition:.3s;
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+}
 
-    .not-found-card h1 {
-        font-size: 70px;
-    }
+.notfound-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 35px rgba(37,99,235,.45);
+}
 
-    .not-found-card h2 {
-        font-size: 24px;
-    }
+@media(max-width:768px){
+.notfound-card{ padding:36px 24px; }
+.notfound-card h1{ font-size:60px; }
 }
