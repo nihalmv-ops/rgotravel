@@ -12,19 +12,32 @@ function Destinations() {
   const [priceRange, setPriceRange] = useState("All");
   const [sortBy, setSortBy] = useState("None");
 
+  const allDestinations = useMemo(() => {
+    const saved = localStorage.getItem("admin_destinations");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return destinations;
+  }, []);
+
   const countries = useMemo(() => {
 
-    const unique = [...new Set(destinations.map((d) => d.country))];
+    const unique = [...new Set(allDestinations.map((d) => d.country))];
 
     return unique;
 
-  }, []);
+  }, [allDestinations]);
 
   const getPrice = (price) => Number(String(price).replace("$", ""));
 
   const filteredDestinations = useMemo(() => {
 
-    let result = destinations.filter((place) => {
+    let result = allDestinations.filter((place) => {
 
       const matchesSearch =
         place.name.toLowerCase().includes(search.toLowerCase()) ||

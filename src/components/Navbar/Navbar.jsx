@@ -16,7 +16,8 @@ import {
   FaStar,
   FaCreditCard,
   FaBell,
-  FaQuestionCircle
+  FaQuestionCircle,
+  FaShieldAlt
 } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext";
@@ -99,6 +100,14 @@ function Navbar() {
               {showProfile && (
 
          <div className="dropdown">
+
+  <Link
+    to="/admin"
+    onClick={closeMenu}
+  >
+    <FaShieldAlt />
+    Admin Panel
+  </Link>
 
   <Link
     to="/profile"

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -29,11 +29,15 @@ import BlogPost from "./pages/BlogPost/BlogPost";
 import Compare from "./pages/Compare/Compare";
 import CostCalculator from "./pages/CostCalculator/CostCalculator";
 import Chatbot from "./components/Chatbot/Chatbot";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   return (
     <>
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
 
       <Routes>
 
@@ -108,11 +112,12 @@ element={
 
 <Route path="/cost-calculator" element={<CostCalculator />} />
 
-
+<Route path="/admin" element={<Admin />} />
+<Route path="/admin/*" element={<Admin />} />
 
       </Routes>
-        <Footer />
-        <Chatbot />
+      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <Chatbot />}
     </>
   );
 }
