@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -8,8 +8,7 @@ import Contact from "./pages/Contact/Contact";
 import NotFound from "./pages/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import Booking from "./pages/Booking/Booking";
-import ProtectedRoute 
-from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
@@ -29,95 +28,75 @@ import BlogPost from "./pages/BlogPost/BlogPost";
 import Compare from "./pages/Compare/Compare";
 import CostCalculator from "./pages/CostCalculator/CostCalculator";
 import Chatbot from "./components/Chatbot/Chatbot";
-import Admin from "./pages/Admin/Admin";
 
 function App() {
-  const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith("/admin");
-
   return (
     <>
-      {!isAdminRoute && <Navbar />}
+      <Navbar />
 
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+        <Route
+          path="/booking"
+          element={
+            <ProtectedRoute>
+              <Booking />
+            </ProtectedRoute>
+          }
+        />
 
-       <Route path="/" element={<Home />} />
-<Route path="/gallery" element={<Gallery />} />
-<Route path="/contact" element={<Contact />} />
-<Route path="*" element={<NotFound />} />
-<Route
-path="/booking"
-element={
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
 
-<ProtectedRoute>
+        <Route path="/my-bookings" element={<MyBookings />} />
 
-<Booking />
+        <Route path="/settings" element={<Settings />} />
 
-</ProtectedRoute>
+        <Route path="/edit-profile" element={<EditProfile />} />
 
-}
-/>
+        <Route
+          path="/payment-confirmation"
+          element={
+            <ProtectedRoute>
+              <PaymentConfirmation />
+            </ProtectedRoute>
+          }
+        />
 
-<Route path="/login" element={<Login />} />
-<Route path="/register" element={<Register />} />
-<Route path="/profile" element={<Profile />} />
+        <Route
+          path="/booking-success"
+          element={
+            <ProtectedRoute>
+              <BookingSuccess />
+            </ProtectedRoute>
+          }
+        />
 
-<Route path="/my-bookings" element={<MyBookings />} />
+        <Route path="/wishlist" element={<Wishlist />} />
 
-<Route path="/settings" element={<Settings />} />
+        <Route path="/change-password" element={<ChangePassword />} />
 
-<Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/trip-planner" element={<TripPlanner />} />
 
-<Route
-path="/payment-confirmation"
-element={
+        <Route path="/weather" element={<Weather />} />
 
-<ProtectedRoute>
+        <Route path="/destination/:id" element={<DestinationDetails />} />
 
-<PaymentConfirmation />
+        <Route path="/blog" element={<Blog />} />
 
-</ProtectedRoute>
+        <Route path="/blog/:slug" element={<BlogPost />} />
 
-}
-/>
+        <Route path="/compare" element={<Compare />} />
 
-<Route
-path="/booking-success"
-element={
-
-<ProtectedRoute>
-
-<BookingSuccess />
-
-</ProtectedRoute>
-
-}
-/>
-
-<Route path="/wishlist" element={<Wishlist />} />
-
-<Route path="/change-password" element={<ChangePassword />} />
-
-<Route path="/trip-planner" element={<TripPlanner />} />
-
-<Route path="/weather" element={<Weather />} />
-
-<Route path="/destination/:id" element={<DestinationDetails />} />
-
-<Route path="/blog" element={<Blog />} />
-
-<Route path="/blog/:slug" element={<BlogPost />} />
-
-<Route path="/compare" element={<Compare />} />
-
-<Route path="/cost-calculator" element={<CostCalculator />} />
-
-<Route path="/admin" element={<Admin />} />
-<Route path="/admin/*" element={<Admin />} />
-
+        <Route path="/cost-calculator" element={<CostCalculator />} />
       </Routes>
-      {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <Chatbot />}
+
+      <Footer />
+      <Chatbot />
     </>
   );
 }

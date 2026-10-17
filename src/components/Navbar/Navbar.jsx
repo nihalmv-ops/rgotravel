@@ -102,14 +102,6 @@ function Navbar() {
          <div className="dropdown">
 
   <Link
-    to="/admin"
-    onClick={closeMenu}
-  >
-    <FaShieldAlt />
-    Admin Panel
-  </Link>
-
-  <Link
     to="/profile"
     onClick={closeMenu}
   >
