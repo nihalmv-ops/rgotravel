@@ -81,9 +81,17 @@ function Navbar() {
                 className="profile-btn"
                 onClick={() => setShowProfile(!showProfile)}
               >
-                <FaUserCircle className="avatar" />
+                {localStorage.getItem("profilePicture") ? (
+                  <img
+                    src={localStorage.getItem("profilePicture")}
+                    alt="User"
+                    className="w-7 h-7 rounded-full object-cover border border-sky-400"
+                  />
+                ) : (
+                  <FaUserCircle className="avatar" />
+                )}
 
-                <span>Nihal</span>
+                <span>{localStorage.getItem("profileName")?.trim().split(" ")[0] || "Nihal"}</span>
 
                 <FaChevronDown />
               </button>

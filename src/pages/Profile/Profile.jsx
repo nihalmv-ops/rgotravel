@@ -21,6 +21,10 @@ function Profile() {
   const { logout } = useAuth();
 
   const photo = localStorage.getItem("profilePicture");
+  const name = localStorage.getItem("profileName") || "Nihal MV";
+  const email = localStorage.getItem("profileEmail") || "nihal@example.com";
+  const phone = localStorage.getItem("profilePhone") || "+91 9876543210";
+  const location = localStorage.getItem("profileLocation") || "Kerala, India";
 
   return (
 
@@ -44,9 +48,9 @@ function Profile() {
 
           )}
 
-          <h2>Nihal MV</h2>
+          <h2>{name}</h2>
 
-          <p>nihal@example.com</p>
+          <p>{email}</p>
 
           <span className="premium">
             Premium Traveler
@@ -60,7 +64,7 @@ function Profile() {
 
             <FaPhone />
 
-            <span>+91 9876543210</span>
+            <span>{phone}</span>
 
           </div>
 
@@ -68,7 +72,7 @@ function Profile() {
 
             <FaEnvelope />
 
-            <span>nihal@example.com</span>
+            <span>{email}</span>
 
           </div>
 
@@ -76,7 +80,7 @@ function Profile() {
 
             <FaMapMarkerAlt />
 
-            <span>Kerala, India</span>
+            <span>{location}</span>
 
           </div>
 
