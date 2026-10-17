@@ -123,3 +123,4 @@ export default function TopNavbar({ onMenuClick, title }) {
     </header>
   );
 }
+

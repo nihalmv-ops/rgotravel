@@ -353,3 +353,4 @@ export default function Bookings() {
     </div>
   );
 }
+

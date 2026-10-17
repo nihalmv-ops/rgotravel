@@ -242,3 +242,4 @@ export const INITIAL_USERS = [
     joinDate: "2026-06-11"
   }
 ];
+
