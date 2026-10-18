@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  import.meta.env.VITE_API_URL || "https://rgotravel.onrender.com/api";
 
 // Helper for handling JSON or FormData requests
 async function handleResponse(res) {
@@ -120,7 +120,10 @@ export function getImageUrl(image) {
     image.startsWith("https://") ||
     image.startsWith("data:")
   ) {
-    return image;
+    return image.replace(
+      /^http:\/\/(rgotravel\.onrender\.com)/i,
+      "https://$1"
+    );
   }
   const serverOrigin = API_BASE_URL.replace(/\/api\/?$/, "");
   return `${serverOrigin}${image.startsWith("/") ? "" : "/"}${image}`;
