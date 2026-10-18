@@ -9,7 +9,12 @@
     "category": "Beach & Island",
     "description": "An Indonesian paradise renowned for its forested volcanic mountains, iconic rice terraces, exotic beaches, and vibrant cultural ceremonies.",
     "bestTimeToVisit": "April to October",
-    "highlights": ["Uluwatu Temple", "Tegallalang Rice Terraces", "Nusa Penida Island", "Mount Batur"],
+    "highlights": [
+      "Uluwatu Temple",
+      "Tegallalang Rice Terraces",
+      "Nusa Penida Island",
+      "Mount Batur"
+    ],
     "createdAt": "2026-01-10T10:00:00.000Z"
   },
   {
@@ -22,7 +27,12 @@
     "category": "City & Luxury",
     "description": "A glamorous global hub famed for luxury shopping, ultramodern architecture, desert safaris, and lively nightlife.",
     "bestTimeToVisit": "November to March",
-    "highlights": ["Burj Khalifa", "Dubai Mall", "Palm Jumeirah", "Desert Dune Safari"],
+    "highlights": [
+      "Burj Khalifa",
+      "Dubai Mall",
+      "Palm Jumeirah",
+      "Desert Dune Safari"
+    ],
     "createdAt": "2026-01-12T10:00:00.000Z"
   },
   {
@@ -30,12 +40,17 @@
     "name": "Maldives",
     "country": "Maldives",
     "image": "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80",
-    "rating": 5.0,
+    "rating": 5,
     "price": "$1299",
     "category": "Beach & Island",
     "description": "Tropical paradise in the Indian Ocean offering private overwater bungalows, crystal clear lagoons, and pristine coral reefs.",
     "bestTimeToVisit": "December to April",
-    "highlights": ["Overwater Villas", "Manta Ray Snorkeling", "Glowing Bioluminescent Beach", "Sunset Cruises"],
+    "highlights": [
+      "Overwater Villas",
+      "Manta Ray Snorkeling",
+      "Glowing Bioluminescent Beach",
+      "Sunset Cruises"
+    ],
     "createdAt": "2026-01-15T10:00:00.000Z"
   },
   {
@@ -48,7 +63,12 @@
     "category": "Historical & Cultural",
     "description": "The City of Light, world-famous for its world-class art museums, iconic monuments, culinary excellence, and romantic river walks.",
     "bestTimeToVisit": "June to August, September to October",
-    "highlights": ["Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral", "Montmartre"],
+    "highlights": [
+      "Eiffel Tower",
+      "Louvre Museum",
+      "Notre-Dame Cathedral",
+      "Montmartre"
+    ],
     "createdAt": "2026-01-18T10:00:00.000Z"
   },
   {
@@ -61,7 +81,12 @@
     "category": "Mountain & Snow",
     "description": "Mountainous Central European country home to numerous lakes, alpine villages, and the high peaks of the Alps.",
     "bestTimeToVisit": "June to September (Hiking) or December to March (Skiing)",
-    "highlights": ["Matterhorn", "Jungfraujoch", "Lake Geneva", "Interlaken"],
+    "highlights": [
+      "Matterhorn",
+      "Jungfraujoch",
+      "Lake Geneva",
+      "Interlaken"
+    ],
     "createdAt": "2026-01-20T10:00:00.000Z"
   },
   {
@@ -74,7 +99,12 @@
     "category": "Tropical Adventure",
     "description": "Southeast Asian wonderland known for tropical beaches, opulent royal palaces, ancient ruins, and ornate temples.",
     "bestTimeToVisit": "November to April",
-    "highlights": ["Phuket Beaches", "Chiang Mai Temples", "Bangkok Grand Palace", "Phi Phi Islands"],
+    "highlights": [
+      "Phuket Beaches",
+      "Chiang Mai Temples",
+      "Bangkok Grand Palace",
+      "Phi Phi Islands"
+    ],
     "createdAt": "2026-01-22T10:00:00.000Z"
   }
 ]
