@@ -1,0 +1,30 @@
+[
+  {
+    "id": "BK-8041",
+    "customer": "Nihal MV",
+    "email": "nihal@example.com",
+    "phone": "+91 9876543210",
+    "tour": "Bali Tropical Adventure",
+    "destination": "Bali, Indonesia",
+    "travelDate": "2026-11-20",
+    "guests": 2,
+    "amount": "$1,598",
+    "paymentMethod": "Credit Card",
+    "status": "Confirmed",
+    "bookedOn": "2026-10-15T12:00:00.000Z"
+  },
+  {
+    "id": "BK-8042",
+    "customer": "Sophia Rossi",
+    "email": "sophia.rossi@example.com",
+    "phone": "+39 06 698 12345",
+    "tour": "Swiss Alps Express",
+    "destination": "Zermatt, Switzerland",
+    "travelDate": "2026-12-05",
+    "guests": 4,
+    "amount": "$5,996",
+    "paymentMethod": "PayPal",
+    "status": "Confirmed",
+    "bookedOn": "2026-10-14T15:30:00.000Z"
+  }
+]

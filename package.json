@@ -1,0 +1,30 @@
+{
+  "name": "gotravel-backend",
+  "version": "1.0.0",
+  "description": "REST API backend for GoTravel web application and admin portal",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "travel",
+    "api",
+    "express",
+    "tourist-places",
+    "upload",
+    "gotravel"
+  ],
+  "author": "GoTravel Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
