@@ -153,13 +153,38 @@ export default function Destinations() {
       if (modal.mode === "edit") {
         const res = await updatePlace(modal.data.id, formData);
         if (res.success) {
-          toast.success("Tourist place updated in backend!");
+          toast.success("Destination updated successfully!");
+          if (res.data) {
+            setDestinations((prev) =>
+              prev.map((d) => (d.id === modal.data.id ? res.data : d))
+            );
+          }
           loadPlacesFromBackend();
         }
       } else {
         const res = await createPlace(formData);
         if (res.success) {
-          toast.success("New tourist place uploaded to backend!");
+          toast.success("New destination added successfully!");
+          if (res.data) {
+            setDestinations((prev) => [
+              res.data,
+              ...prev.filter((d) => d.id !== res.data.id),
+            ]);
+            try {
+              const current = JSON.parse(
+                localStorage.getItem("admin_destinations") || "[]"
+              );
+              localStorage.setItem(
+                "admin_destinations",
+                JSON.stringify([
+                  res.data,
+                  ...current.filter((d) => d.id !== res.data.id),
+                ])
+              );
+            } catch (e) {
+              console.error(e);
+            }
+          }
           loadPlacesFromBackend();
         }
       }
@@ -271,9 +296,9 @@ export default function Destinations() {
           </button>
           <button
             onClick={handleOpenAddModal}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-500 hover:to-sky-300 text-white shadow-lg shadow-sky-500/25 transition-all cursor-pointer self-start sm:self-auto"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-blue-600 via-sky-500 to-sky-400 hover:from-blue-500 hover:to-sky-300 text-white shadow-lg shadow-sky-500/25 transition-all cursor-pointer self-start sm:self-auto"
           >
-            <FaCloudUploadAlt className="text-sm" /> Upload Tourist Place
+            <FaPlus className="text-sm" /> Add Destination
           </button>
         </div>
       </div>

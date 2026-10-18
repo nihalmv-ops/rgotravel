@@ -92,16 +92,26 @@ export default function Dashboard() {
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* Welcome Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-900/60 via-slate-900 to-sky-950/60 border border-blue-500/20 p-6 sm:p-8">
-        <div className="relative z-10 max-w-xl space-y-2">
-          <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-sky-500/20 text-sky-400 border border-sky-500/30">
-            Enterprise Management
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Welcome to GoTravel Admin
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300">
-            Real-time control over travel catalog, live reservations, client accounts, and revenue.
-          </p>
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="max-w-xl space-y-2">
+            <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-sky-500/20 text-sky-400 border border-sky-500/30">
+              Enterprise Management
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Welcome to GoTravel Admin
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300">
+              Real-time control over travel catalog, live reservations, client accounts, and revenue.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              to="/destinations"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-blue-600 via-sky-500 to-sky-400 hover:from-blue-500 hover:to-sky-300 text-white shadow-lg shadow-sky-500/25 transition-all"
+            >
+              <FaPlus /> Add Destination
+            </Link>
+          </div>
         </div>
 
         {/* Ambient decorative circle */}
@@ -150,22 +160,26 @@ export default function Dashboard() {
         </div>
 
         {/* Destinations */}
-        <div className="bg-slate-900 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-6 transition-all duration-200">
+        <Link
+          to="/destinations"
+          className="bg-slate-900 border border-slate-800 hover:border-indigo-500/50 hover:bg-slate-850 rounded-2xl p-6 transition-all duration-200 block group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider group-hover:text-indigo-300">
               Destinations
             </span>
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
               <FaMapMarkedAlt className="text-lg" />
             </div>
           </div>
           <div className="text-2xl sm:text-3xl font-extrabold text-white">
             {destinations.length}
           </div>
-          <div className="mt-2 text-xs text-indigo-300 font-semibold">
-            Across 6+ Countries
+          <div className="mt-2 text-xs text-indigo-300 font-semibold flex items-center justify-between">
+            <span>Manage Places</span>
+            <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
           </div>
-        </div>
+        </Link>
 
         {/* Users */}
         <div className="bg-slate-900 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-6 transition-all duration-200">
