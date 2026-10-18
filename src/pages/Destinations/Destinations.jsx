@@ -24,6 +24,7 @@ import {
   createPlace,
   updatePlace,
   deletePlace,
+  getImageUrl,
   API_BASE_URL
 } from "../../services/api";
 
@@ -319,7 +320,7 @@ export default function Destinations() {
             {/* Image Preview Container */}
             <div className="relative h-48 overflow-hidden bg-slate-800">
               <img
-                src={dest.image}
+                src={getImageUrl(dest.image)}
                 alt={dest.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
@@ -700,7 +701,7 @@ export default function Destinations() {
           <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative">
             <div className="relative h-56">
               <img
-                src={viewPlace.image}
+                src={getImageUrl(viewPlace.image)}
                 alt={viewPlace.name}
                 className="w-full h-full object-cover"
               />

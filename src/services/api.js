@@ -107,3 +107,21 @@ export async function deleteBooking(id) {
   });
   return handleResponse(res);
 }
+
+// ===================================
+// IMAGE URL HELPER
+// ===================================
+export function getImageUrl(image) {
+  if (!image) {
+    return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80";
+  }
+  if (
+    image.startsWith("http://") ||
+    image.startsWith("https://") ||
+    image.startsWith("data:")
+  ) {
+    return image;
+  }
+  const serverOrigin = API_BASE_URL.replace(/\/api\/?$/, "");
+  return `${serverOrigin}${image.startsWith("/") ? "" : "/"}${image}`;
+}
