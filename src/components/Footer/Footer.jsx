@@ -58,6 +58,14 @@ function Footer() {
           <Link to="/">Home</Link>
           <Link to="/gallery">Gallery</Link>
           <Link to="/contact">Contact</Link>
+          <a
+            href="https://rgotravel-git-admin-nihalmv-ops-projects.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            style={{ opacity: 0.85 }}
+          >
+            Admin Portal ↗
+          </a>
 
         </div>
 
