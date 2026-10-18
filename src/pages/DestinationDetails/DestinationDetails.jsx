@@ -14,6 +14,7 @@ import {
 
 import destinations from "../../data/destinations";
 import destinationDetails from "../../data/destinationDetails";
+import { fetchPlaceById, getImageUrl } from "../../services/api";
 
 import ShareDestination from "../../components/ShareDestination/ShareDestination";
 import { recordRecentlyViewed } from "../../components/RecentlyViewed/RecentlyViewed";
@@ -23,8 +24,19 @@ function DestinationDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const place = destinations.find((d) => String(d.id) === id);
-  const details = destinationDetails[id];
+  const [place, setPlace] = useState(() => {
+    try {
+      const saved = localStorage.getItem("admin_destinations");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const found = parsed.find((d) => String(d.id) === String(id));
+        if (found) return found;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return destinations.find((d) => String(d.id) === String(id)) || null;
+  });
 
   const [activeImage, setActiveImage] = useState(0);
 
@@ -35,11 +47,26 @@ function DestinationDetails() {
   const [reviewForm, setReviewForm] = useState({ name: "", comment: "", rating: 5 });
 
   useEffect(() => {
+    let isMounted = true;
+    fetchPlaceById(id)
+      .then((data) => {
+        if (isMounted && data) {
+          setPlace(data);
+        }
+      })
+      .catch((err) => {
+        console.info("Could not fetch place by ID from backend:", err.message);
+      });
 
-    if (place) recordRecentlyViewed(place.id);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
+
+  useEffect(() => {
+    if (place) recordRecentlyViewed(place.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, place]);
 
   if (!place) {
 
@@ -61,9 +88,37 @@ function DestinationDetails() {
 
   }
 
-  // Only one image asset per destination currently exists, so the
-  // "gallery" reuses it — swap in more photos here as they're added.
-  const gallery = [place.image];
+  const mainImage = getImageUrl(place.image);
+  const gallery = [mainImage];
+
+  const details = destinationDetails[id] || {
+    overview:
+      place.description ||
+      place.overview ||
+      `Experience the breathtaking beauty and culture of ${place.name}, ${place.country}. An unforgettable destination offering stunning landscapes, vibrant local experiences, and world-class hospitality.`,
+    bestTime: place.bestTime || place.season || "October - March (Peak Season)",
+    thingsToDo:
+      Array.isArray(place.highlights) && place.highlights.length > 0
+        ? place.highlights
+        : typeof place.highlights === "string" && place.highlights.trim()
+        ? place.highlights.split(",").map((s) => s.trim()).filter(Boolean)
+        : [
+            `Explore iconic landmarks in ${place.name}`,
+            "Guided scenic sightseeing and photography",
+            "Local culinary and cultural tasting tour",
+            "Outdoor nature and leisure adventures"
+          ],
+    hotels: [
+      { name: `Grand Luxury Resort ${place.name}`, price: "$180/night", rating: 4.9 },
+      { name: `Boutique Heritage Inn`, price: "$120/night", rating: 4.8 },
+      { name: `Scenic View Suites`, price: "$85/night", rating: 4.6 }
+    ],
+    restaurants: [
+      { name: `The View Terrace`, type: "Fine Dining & Local Specialties", rating: 4.9 },
+      { name: `Harbor & Spice Table`, type: "Regional Cuisine", rating: 4.8 },
+      { name: `Sunset Coastal Cafe`, type: "Casual Dining & Cafe", rating: 4.7 }
+    ]
+  };
 
   const handleReviewSubmit = (e) => {
 
@@ -95,7 +150,8 @@ function DestinationDetails() {
     navigate("/booking", {
       state: {
         packageData: {
-          image: place.image,
+          id: place.id,
+          image: mainImage,
           title: place.name,
           location: place.country,
           price: place.price
@@ -120,7 +176,15 @@ function DestinationDetails() {
 
         <div className="gallery">
 
-          <img src={gallery[activeImage]} alt={place.name} className="gallery-main" />
+          <img
+            src={gallery[activeImage]}
+            alt={place.name}
+            className="gallery-main"
+            onError={(e) => {
+              e.currentTarget.src =
+                "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800";
+            }}
+          />
 
           <div className="gallery-thumbs">
 
@@ -132,6 +196,10 @@ function DestinationDetails() {
                 alt={`${place.name} ${index + 1}`}
                 className={activeImage === index ? "active" : ""}
                 onClick={() => setActiveImage(index)}
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800";
+                }}
               />
 
             ))}

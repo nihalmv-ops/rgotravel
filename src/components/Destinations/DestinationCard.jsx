@@ -10,6 +10,7 @@ import {
 
 import WeatherModal from "../WeatherModal/WeatherModal";
 import { addNotification } from "../../utils/notifications";
+import { getImageUrl } from "../../services/api";
 
 function DestinationCard({
   id,
@@ -19,6 +20,7 @@ function DestinationCard({
   rating,
   price,
 }) {
+  const displayImage = getImageUrl(image);
   const [isFavorite, setIsFavorite] = useState(() => {
     const favorites =
       JSON.parse(localStorage.getItem("favoriteDestinations")) || [];
@@ -70,8 +72,12 @@ function DestinationCard({
       {/* Image */}
       <Link to={`/destination/${id}`}>
         <img
-          src={image}
+          src={displayImage}
           alt={name}
+          onError={(e) => {
+            e.currentTarget.src =
+              "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800";
+          }}
         />
       </Link>
 
@@ -129,7 +135,7 @@ function DestinationCard({
           state={{
             packageData: {
               id,
-              image,
+              image: displayImage,
               title: name,
               location: country,
               price,

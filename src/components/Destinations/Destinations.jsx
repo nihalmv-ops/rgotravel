@@ -1,9 +1,10 @@
 import "./Destinations.css";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import DestinationCard from "./DestinationCard";
 import destinations from "../../data/destinations";
+import { fetchTouristPlaces } from "../../services/api";
 
 function Destinations() {
 
@@ -12,7 +13,7 @@ function Destinations() {
   const [priceRange, setPriceRange] = useState("All");
   const [sortBy, setSortBy] = useState("None");
 
-  const allDestinations = useMemo(() => {
+  const [allDestinations, setAllDestinations] = useState(() => {
     const saved = localStorage.getItem("admin_destinations");
     if (saved) {
       try {
@@ -23,6 +24,23 @@ function Destinations() {
       }
     }
     return destinations;
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchTouristPlaces()
+      .then((data) => {
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          setAllDestinations(data);
+        }
+      })
+      .catch((err) => {
+        console.info("Using cached/fallback destinations:", err.message);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const countries = useMemo(() => {
