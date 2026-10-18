@@ -106,7 +106,17 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🚀 GoTravel Backend API running on port ${PORT}`);
   console.log(`🔗 Local API: http://localhost:${PORT}/api/places`);
+});
+
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(`❌ Port ${PORT} is already in use.`);
+    console.error(`💡 Tip: Run 'Stop-Process -Name node -Force' or change PORT in .env.`);
+    process.exit(1);
+  } else {
+    console.error("Server error:", err);
+  }
 });
