@@ -14,5 +14,5 @@ services:
       - key: CLIENT_URL
         value: https://rgotravel.vercel.app
       - key: ADMIN_URL
-        value: http://localhost:5174
+        value: https://rgotravel-git-admin-nihalmv-ops-projects.vercel.app
 

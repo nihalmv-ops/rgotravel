@@ -15,10 +15,21 @@ const PLACES_FILE = "places.json";
 // Helper to construct full image URL
 const getFullImageUrl = (req, imagePath) => {
   if (!imagePath) return "";
-  if (imagePath.startsWith("http://") || imagePath.startsWith("https://") || imagePath.startsWith("data:")) {
-    return imagePath;
+  if (
+    imagePath.startsWith("http://") ||
+    imagePath.startsWith("https://") ||
+    imagePath.startsWith("data:")
+  ) {
+    return imagePath.replace(
+      /^http:\/\/(rgotravel\.onrender\.com)/i,
+      "https://$1"
+    );
   }
-  const protocol = req.protocol;
+  const isHttps =
+    req.secure ||
+    req.get("x-forwarded-proto") === "https" ||
+    req.headers["x-forwarded-proto"] === "https";
+  const protocol = isHttps ? "https" : req.protocol;
   const host = req.get("host");
   const cleanPath = imagePath.startsWith("/") ? imagePath : `/${imagePath}`;
   return `${protocol}://${host}${cleanPath}`;
