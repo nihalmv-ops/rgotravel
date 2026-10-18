@@ -106,7 +106,8 @@ app.use((err, req, res, next) => {
   next();
 });
 
-const server = app.listen(PORT, () => {
+const HOST = "0.0.0.0";
+const server = app.listen(PORT, HOST, () => {
   console.log(`🚀 GoTravel Backend API running on port ${PORT}`);
   console.log(`🔗 Local API: http://localhost:${PORT}/api/places`);
 });

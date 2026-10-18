@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: gotravel-backend
+    runtime: node
+    plan: free
+    region: oregon
+    branch: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        value: https://rgotravel.vercel.app
+      - key: ADMIN_URL
+        value: http://localhost:5174

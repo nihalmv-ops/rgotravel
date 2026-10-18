@@ -1,5 +1,22 @@
 [
   {
+    "id": 1792315446930,
+    "name": "bali",
+    "country": "place",
+    "price": "$799",
+    "rating": 4.8,
+    "category": "Beach & Island",
+    "description": "Explore this breathtaking destination with GoTravel curated packages.",
+    "bestTimeToVisit": "April to October",
+    "highlights": [
+      "Beaches",
+      "Temples",
+      "Coral Reefs"
+    ],
+    "image": "/uploads/nihal-mv-dark-developer-portfolio-1792315446912-5960093.png",
+    "createdAt": "2026-10-18T09:24:06.930Z"
+  },
+  {
     "id": 1,
     "name": "Bali",
     "country": "Indonesia",
