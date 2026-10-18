@@ -33,15 +33,21 @@ export async function fetchTouristPlaces() {
     });
 
     if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
+      const json = await res.json();
+      const list = Array.isArray(json)
+        ? json
+        : Array.isArray(json?.data)
+        ? json.data
+        : null;
+
+      if (list && list.length > 0) {
         // Cache in localStorage for offline / fast access
         try {
-          localStorage.setItem("admin_destinations", JSON.stringify(data));
+          localStorage.setItem("admin_destinations", JSON.stringify(list));
         } catch (e) {
           console.warn("Could not cache destinations to localStorage", e);
         }
-        return data;
+        return list;
       }
     }
   } catch (err) {
@@ -72,7 +78,8 @@ export async function fetchPlaceById(id) {
   try {
     const res = await fetch(`${API_BASE_URL}/places/${id}`);
     if (res.ok) {
-      return await res.json();
+      const json = await res.json();
+      return json?.data || json;
     }
   } catch (err) {
     console.info("Backend offline; finding place locally:", err.message);
@@ -81,3 +88,4 @@ export async function fetchPlaceById(id) {
   const all = await fetchTouristPlaces();
   return all.find((p) => String(p.id) === String(id)) || null;
 }
+
