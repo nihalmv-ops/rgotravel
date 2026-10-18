@@ -28,6 +28,7 @@ import BlogPost from "./pages/BlogPost/BlogPost";
 import Compare from "./pages/Compare/Compare";
 import CostCalculator from "./pages/CostCalculator/CostCalculator";
 import Chatbot from "./components/Chatbot/Chatbot";
+import Notifications from "./pages/Notifications/Notifications";
 
 function App() {
   return (
@@ -77,6 +78,8 @@ function App() {
         />
 
         <Route path="/wishlist" element={<Wishlist />} />
+
+        <Route path="/notifications" element={<Notifications />} />
 
         <Route path="/change-password" element={<ChangePassword />} />
 
